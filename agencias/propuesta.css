@@ -1,0 +1,27 @@
+:root{--azul:#184fe5;--noche:#101f3d;--asfalto:#5b667a;--niebla:#f3f5f8;--linea:#dce2ec;--oro:#f5b301}
+*{box-sizing:border-box}
+body{margin:0;font:13px/1.45 'Segoe UI',sans-serif;color:var(--noche);background:#e9edf3}
+.sheet{width:210mm;min-height:297mm;margin:20px auto;background:#fff;padding:12mm 13mm;display:flex;flex-direction:column;gap:5mm}
+.top{display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:26px;font-weight:850;letter-spacing:-1.5px}.brand span{color:var(--azul)}
+.tag{font-size:10px;letter-spacing:2px;font-weight:750;color:var(--asfalto)}
+.hero{background:var(--noche);color:#fff;border-radius:14px;display:grid;grid-template-columns:1.25fr 1fr;overflow:hidden}
+.hero>div{padding:8mm}
+.hero h1{font-size:30px;line-height:1.08;letter-spacing:-1px;margin:0 0 10px}.hero h1 span{color:#8fb2ff}
+.hero p{margin:0;color:#c7d2e7;font-size:13px}.hero p b{color:#fff}
+.hero img{width:100%;height:100%;object-fit:cover;display:block}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+.three div{border:1px solid var(--linea);border-radius:12px;padding:5mm}
+.n{color:var(--azul);font-weight:800;font-size:12px}
+.three h3{margin:4px 0;font-size:16px}.three p{margin:0;color:var(--asfalto);font-size:12px}
+.founder{background:#fff8e1;border:2px solid var(--oro);border-radius:14px;padding:5mm 7mm}
+.badge{display:inline-block;background:var(--noche);color:var(--oro);font-weight:800;font-size:11px;letter-spacing:1.5px;padding:5px 10px;border-radius:6px}
+.founder ul{margin:8px 0 0;padding-left:18px;columns:2;column-gap:8mm}
+.founder li{margin-bottom:4px;break-inside:avoid}
+h2{font-size:16px;margin:0 0 8px}
+.incl .grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 8mm;font-size:12px}
+.steps ol{margin:0;padding-left:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:6mm;font-size:12px}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;background:var(--azul);color:#fff;border-radius:12px;padding:5mm 7mm;font-size:12px}
+.contact{text-align:right}
+@media screen and (max-width:800px){.sheet{width:auto;min-height:0;margin:0;padding:16px}.hero,.three,.incl .grid,.steps ol{grid-template-columns:1fr}.hero img{height:180px}.founder ul{columns:1}.foot{display:block}.contact{text-align:left;margin-top:8px}}
+@media print{@page{size:A4;margin:0}body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}.sheet{margin:0;height:297mm;overflow:hidden}}
