@@ -6,6 +6,7 @@ const money=c=>(c.currency==='USD'?'US$ ':'$ ')+c.price.toLocaleString('es-AR');
 const img=c=>'images/auto-'+c.photo+'.jpg';
 const type=c=>/Hilux|Ranger|Amarok/.test(c.name)?'pickup':/Duster|Renegade|Kicks|HR-V/.test(c.name)?'suv':'auto';
 const mark=a=>a.logo?`<span class="agency-mark has-logo"><img src="${esc(a.logo)}" alt="Logo de ${esc(a.name)}"></span>`:`<span class="agency-mark ag-${a.id}">${esc(a.initials)}</span>`;
+const brand=c=>c.name.split(' ')[0];
 const waText=a=>a.wa?'+'+a.wa.replace(/^54(\d{4})(\d{2})(\d{4})$/,'54 $1 $2-$3'):'';
 
 function card(c){const a=ag(c.agency);return `<article class="card"><button class="card-open" data-car="${c.id}"><div class="photo"><img src="${img(c)}" alt="${esc(c.name)} de ejemplo" loading="lazy">${c.featured?'<span class="featured-tag">Destacado</span>':''}<span class="tag">${c.year} · ${c.km.toLocaleString('es-AR')} km</span></div><div class="body"><h3>${esc(c.name)}</h3><div class="specs">${esc(c.version)} · ${esc(c.box)} · ${esc(c.fuel)}</div><div class="price">${money(c)}</div><div class="pills">${c.vtv?'<span class="pill">VTV al día</span>':''}${c.owners===1?'<span class="pill">Único dueño</span>':''}${c.finance?'<span class="pill">Financiación</span>':''}${c.swap?'<span class="pill">Permuta</span>':''}</div></div></button><div class="seller">${mark(a)}<span><b>${esc(a.name)}</b><br><span class="badge-ok">✓ Agencia verificada</span></span></div></article>`}
@@ -14,17 +15,24 @@ function list(rows){return rows.length?rows.map(card).join(''):'<div class="empt
 
 function render(){
   const q=$('#query').value.trim().toLowerCase(),cur=$('#currency').value,max=Number($('#max').value);
-  let rows=CARS.filter(c=>(!q||(c.name+' '+c.version).toLowerCase().includes(q))&&(!cur||c.currency===cur)&&(!max||c.price<=max)&&(!$('#fAgency').value||c.agency===$('#fAgency').value)&&(!$('#fType').value||type(c)===$('#fType').value)&&(!$('#fFuel').value||c.fuel===$('#fFuel').value)&&(!$('#fFinance').checked||c.finance));
+  let rows=CARS.filter(c=>(!q||(c.name+' '+c.version).toLowerCase().includes(q))&&(!cur||c.currency===cur)&&(!max||c.price<=max)&&(!$('#fBrand').value||brand(c)===$('#fBrand').value)&&(!$('#fType').value||type(c)===$('#fType').value)&&(!$('#fFuel').value||c.fuel===$('#fFuel').value)&&(!$('#fFinance').checked||c.finance));
   const s=$('#sort').value;
   rows.sort(s==='year'?(a,b)=>b.year-a.year:s==='km'?(a,b)=>a.km-b.km:(a,b)=>(b.featured?1:0)-(a.featured?1:0));
   $('#count').textContent=rows.length+' autos de '+new Set(rows.map(r=>r.agency)).size+' agencias · Azul, Buenos Aires';
   $('#cars').innerHTML=list(rows);
+  const b=$('#fBrand').value,box=$('#brandAgencies');
+  if(!b){box.hidden=true;return}
+  const counts={};rows.forEach(r=>counts[r.agency]=(counts[r.agency]||0)+1);
+  const ags=AGENCIES.filter(a=>counts[a.id]).sort((x,y)=>x.name.localeCompare(y.name,'es'));
+  box.hidden=false;
+  box.innerHTML=ags.length?`<p><b>${esc(b)}</b> en ${ags.length} ${ags.length===1?'agencia':'agencias'} de Azul:</p><div class="ba-list">${ags.map(a=>`<a href="#agencia/${a.id}" class="ba">${mark(a)}<span>${esc(a.name.replace(/\s*\(demo\)/,''))}<small>${counts[a.id]} ${counts[a.id]===1?'auto':'autos'}</small></span></a>`).join('')}</div>`:`<p>Ninguna agencia tiene <b>${esc(b)}</b> con esos filtros.</p>`;
 }
 
 function strip(){
   if($('#agencyStrip'))$('#agencyStrip').innerHTML=AGENCIES.map(a=>`<a class="agency-card" href="#agencia/${a.id}">${mark(a)}<div><strong>${esc(a.name)}</strong><span>${CARS.filter(c=>c.agency===a.id).length} autos${a.since?' · desde '+a.since:' · Azul'}</span></div></a>`).join('');
   $('#stories').innerHTML=AGENCIES.map(a=>`<a class="story" href="#agencia/${a.id}"><span class="ring">${a.logo?`<img src="${esc(a.logo)}" alt="">`:`<span class="ini ag-${a.id}">${esc(a.initials)}</span>`}</span><b>${esc(a.name.replace(/\s*\(demo\)/,''))}</b><small>${CARS.filter(c=>c.agency===a.id).length} autos</small></a>`).join('')+`<a class="story join-story" href="#sumate"><span class="ring"><span class="ini plus">+</span></span><b>Tu agencia</b><small>Sumate</small></a>`;
-  $('#fAgency').innerHTML+=AGENCIES.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('');
+  const brands=[...new Set(CARS.map(brand))].sort((x,y)=>x.localeCompare(y,'es'));
+  $('#fBrand').innerHTML+=brands.map(b=>`<option>${esc(b)}</option>`).join('');
   $('#heroCount').textContent='↗ '+CARS.length+' autos · '+AGENCIES.length+' agencias';
 }
 
@@ -51,7 +59,7 @@ document.addEventListener('click',e=>{
   if(e.target.closest('[data-close]')){$('#detail').close()}
   const wa=e.target.closest('[data-wa-car],[data-wa-agency]');if(wa){e.preventDefault();wa.textContent='Abriría WhatsApp (boceto)'}
 });
-['#query','#currency','#max','#fAgency','#fType','#fFuel','#sort','#fFinance'].forEach(s=>$(s).addEventListener('input',render));
+['#query','#currency','#max','#fBrand','#fType','#fFuel','#sort','#fFinance'].forEach(s=>$(s).addEventListener('input',render));
 $('#search').addEventListener('submit',e=>{e.preventDefault();render();$('#catalogo').scrollIntoView({behavior:'smooth'})});
 window.addEventListener('hashchange',route);
 strip();render();route();
