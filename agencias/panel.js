@@ -28,8 +28,8 @@ $('#carForm').addEventListener('submit',e=>{e.preventDefault();$('#formStatus').
 $$('.slot input').forEach(i=>i.addEventListener('change',()=>{if(i.files[0]){i.parentElement.firstChild.textContent='✓ ';i.parentElement.classList.add('done')}}));
 if(window.AGENCY_CUSTOM){
   const n=AGENCY_CUSTOM.name;
-  document.querySelectorAll('.side .who,[data-panel=inicio] .eyebrow').forEach(e=>{e.innerHTML=e.innerHTML.replace('Agencia Demo Centro',esc(n)).replace('AGENCIA DEMO CENTRO',esc(n.toUpperCase()))});
-  document.querySelectorAll('[data-panel=agencia] input').forEach(i=>{if(i.value==='Agencia Demo Centro')i.value=n});
+  document.querySelectorAll('.side .who,[data-panel=inicio] .eyebrow').forEach(e=>{e.innerHTML=e.innerHTML.replace('Facundo Gomez Automotores',esc(n)).replace('FACUNDO GOMEZ AUTOMOTORES',esc(n.toUpperCase()))});
+  document.querySelectorAll('[data-panel=agencia] input').forEach(i=>{if(i.value==='Facundo Gomez Automotores')i.value=n});
   document.querySelectorAll('a[href="informe.html"]').forEach(l=>l.href='informe.html'+location.search);
 }
 rows();admin();

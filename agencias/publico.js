@@ -5,7 +5,8 @@ const ag=id=>AGENCIES.find(a=>a.id===id);
 const money=c=>(c.currency==='USD'?'US$ ':'$ ')+c.price.toLocaleString('es-AR');
 const img=c=>'images/auto-'+c.photo+'.jpg';
 const type=c=>/Hilux|Ranger|Amarok/.test(c.name)?'pickup':/Duster|Renegade|Kicks|HR-V/.test(c.name)?'suv':'auto';
-const mark=a=>`<span class="agency-mark ag-${a.id}">${esc(a.initials)}</span>`;
+const mark=a=>a.logo?`<span class="agency-mark has-logo"><img src="${esc(a.logo)}" alt="Logo de ${esc(a.name)}"></span>`:`<span class="agency-mark ag-${a.id}">${esc(a.initials)}</span>`;
+const waText=a=>a.wa?'+'+a.wa.replace(/^54(\d{4})(\d{2})(\d{4})$/,'54 $1 $2-$3'):'';
 
 function card(c){const a=ag(c.agency);return `<article class="card"><button class="card-open" data-car="${c.id}"><div class="photo"><img src="${img(c)}" alt="${esc(c.name)} de ejemplo" loading="lazy">${c.featured?'<span class="featured-tag">Destacado</span>':''}<span class="tag">${c.year} · ${c.km.toLocaleString('es-AR')} km</span></div><div class="body"><h3>${esc(c.name)}</h3><div class="specs">${esc(c.version)} · ${esc(c.box)} · ${esc(c.fuel)}</div><div class="price">${money(c)}</div><div class="pills">${c.vtv?'<span class="pill">VTV al día</span>':''}${c.owners===1?'<span class="pill">Único dueño</span>':''}${c.finance?'<span class="pill">Financiación</span>':''}${c.swap?'<span class="pill">Permuta</span>':''}</div></div></button><div class="seller">${mark(a)}<span><b>${esc(a.name)}</b><br><span class="badge-ok">✓ Agencia verificada</span></span></div></article>`}
 
@@ -21,7 +22,7 @@ function render(){
 }
 
 function strip(){
-  $('#agencyStrip').innerHTML=AGENCIES.map(a=>`<a class="agency-card" href="#agencia/${a.id}">${mark(a)}<div><strong>${esc(a.name)}</strong><span>${CARS.filter(c=>c.agency===a.id).length} autos · desde ${a.since}</span></div></a>`).join('');
+  $('#agencyStrip').innerHTML=AGENCIES.map(a=>`<a class="agency-card" href="#agencia/${a.id}">${mark(a)}<div><strong>${esc(a.name)}</strong><span>${CARS.filter(c=>c.agency===a.id).length} autos${a.since?' · desde '+a.since:' · Azul'}</span></div></a>`).join('');
   $('#fAgency').innerHTML+=AGENCIES.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('');
   $('#heroCount').textContent='↗ '+CARS.length+' autos · '+AGENCIES.length+' agencias';
 }
@@ -29,7 +30,7 @@ function strip(){
 function agencyPage(id){
   const a=ag(id);if(!a){location.hash='';return}
   const rows=CARS.filter(c=>c.agency===id);
-  $('#agencyPage').innerHTML=`<a class="back" href="#agencias">← Todas las agencias</a><section class="agency-hero">${mark(a)}<div><span class="badge-ok">✓ Agencia verificada por Azul Autos</span><h1>${esc(a.name)}</h1><p>${esc(a.about)}</p></div></section><div class="agency-info"><div><b>Dirección</b>${esc(a.address)}</div><div><b>Horarios</b>${esc(a.hours)}</div><div><b>Trabaja con</b>${a.perks.map(esc).join(' · ')}</div></div><div class="section-head"><div><h2>${rows.length} autos disponibles</h2><p class="muted">Consultá directo por WhatsApp a la agencia.</p></div><a class="btn wa" href="#" data-wa-agency="${a.id}">WhatsApp de la agencia</a></div><div class="grid">${list(rows)}</div>`;
+  $('#agencyPage').innerHTML=`<a class="back" href="#agencias">← Todas las agencias</a><section class="agency-hero">${mark(a)}<div><span class="badge-ok">✓ Agencia verificada por Azul Autos</span><h1>${esc(a.name)}</h1><p>${esc(a.about)}</p></div></section><div class="agency-info"><div><b>Dirección</b>${esc(a.address)}</div><div><b>Horarios</b>${esc(a.hours)}</div><div><b>Trabaja con</b>${a.perks.map(esc).join(' · ')}</div>${a.wa?`<div><b>WhatsApp</b>${esc(waText(a))}</div>`:''}${a.ig?`<div><b>Instagram</b><a class="link" href="https://www.instagram.com/${esc(a.ig)}/" target="_blank" rel="noopener">@${esc(a.ig)}</a></div>`:''}</div><div class="section-head"><div><h2>${rows.length} autos disponibles</h2><p class="muted">Consultá directo por WhatsApp a la agencia.</p></div><a class="btn wa" href="#" data-wa-agency="${a.id}">WhatsApp de la agencia</a></div><div class="grid">${list(rows)}</div>`;
 }
 
 function route(){
