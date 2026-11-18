@@ -22,7 +22,7 @@ function render(){
 }
 
 function strip(){
-  $('#agencyStrip').innerHTML=AGENCIES.map(a=>`<a class="agency-card" href="#agencia/${a.id}">${mark(a)}<div><strong>${esc(a.name)}</strong><span>${CARS.filter(c=>c.agency===a.id).length} autos${a.since?' · desde '+a.since:' · Azul'}</span></div></a>`).join('');
+  if($('#agencyStrip'))$('#agencyStrip').innerHTML=AGENCIES.map(a=>`<a class="agency-card" href="#agencia/${a.id}">${mark(a)}<div><strong>${esc(a.name)}</strong><span>${CARS.filter(c=>c.agency===a.id).length} autos${a.since?' · desde '+a.since:' · Azul'}</span></div></a>`).join('');
   $('#stories').innerHTML=AGENCIES.map(a=>`<a class="story" href="#agencia/${a.id}"><span class="ring">${a.logo?`<img src="${esc(a.logo)}" alt="">`:`<span class="ini ag-${a.id}">${esc(a.initials)}</span>`}</span><b>${esc(a.name.replace(/\s*\(demo\)/,''))}</b><small>${CARS.filter(c=>c.agency===a.id).length} autos</small></a>`).join('')+`<a class="story join-story" href="#sumate"><span class="ring"><span class="ini plus">+</span></span><b>Tu agencia</b><small>Sumate</small></a>`;
   $('#fAgency').innerHTML+=AGENCIES.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('');
   $('#heroCount').textContent='↗ '+CARS.length+' autos · '+AGENCIES.length+' agencias';
