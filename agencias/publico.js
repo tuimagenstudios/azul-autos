@@ -18,7 +18,7 @@ function render(){
   let rows=CARS.filter(c=>(!q||(c.name+' '+c.version).toLowerCase().includes(q))&&(!cur||c.currency===cur)&&(!max||c.price<=max)&&(!$('#fBrand').value||brand(c)===$('#fBrand').value)&&(!$('#fType').value||type(c)===$('#fType').value)&&(!$('#fFuel').value||c.fuel===$('#fFuel').value)&&(!$('#fFinance').checked||c.finance));
   const s=$('#sort').value;
   rows.sort(s==='year'?(a,b)=>b.year-a.year:s==='km'?(a,b)=>a.km-b.km:(a,b)=>(b.featured?1:0)-(a.featured?1:0));
-  $('#count').textContent=rows.length+' autos de '+new Set(rows.map(r=>r.agency)).size+' agencias · Azul, Buenos Aires';
+  {const n=rows.length,g=new Set(rows.map(r=>r.agency)).size;$('#count').textContent=n+(n===1?' auto':' autos')+' de '+g+(g===1?' agencia':' agencias')+' · Azul, Buenos Aires'}
   $('#cars').innerHTML=list(rows);
   const b=$('#fBrand').value,box=$('#brandAgencies');
   if(!b){box.hidden=true;return}
@@ -60,7 +60,7 @@ document.addEventListener('click',e=>{
   const wa=e.target.closest('[data-wa-car],[data-wa-agency]');if(wa){e.preventDefault();wa.textContent='Abriría WhatsApp (boceto)'}
 });
 ['#query','#currency','#max','#fBrand','#fType','#fFuel','#sort','#fFinance'].forEach(s=>$(s).addEventListener('input',render));
-$('#search').addEventListener('submit',e=>{e.preventDefault();render();$('#catalogo').scrollIntoView({behavior:'smooth'})});
+$('#search').addEventListener('submit',e=>{e.preventDefault();render()});
 window.addEventListener('hashchange',route);
 strip();render();route();
 })();
