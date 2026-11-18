@@ -1,6 +1,6 @@
 (function(){
 // ===== Ajustes =====
-const WHATSAPP = '';            // número sin + ni espacios, ej: 5492281123456. Vacío = abre WhatsApp para elegir contacto.
+const WHATSAPP = '5492281461982';          // número sin + ni espacios, ej: 5492281123456. Vacío = abre WhatsApp para elegir contacto.
 const OFFER_END = '2026-12-31'; // fin de la oferta de fundadora
 const SLOTS_LEFT = 4;           // lugares de fundadora que quedan
 // ====================
