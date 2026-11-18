@@ -26,5 +26,11 @@ document.addEventListener('click',e=>{
 });
 $('#carForm').addEventListener('submit',e=>{e.preventDefault();$('#formStatus').innerHTML='<div class="notice">✓ En la web real el auto saldría publicado ahora con el nombre de tu agencia. En el boceto no se guarda nada.</div>'});
 $$('.slot input').forEach(i=>i.addEventListener('change',()=>{if(i.files[0]){i.parentElement.firstChild.textContent='✓ ';i.parentElement.classList.add('done')}}));
+if(window.AGENCY_CUSTOM){
+  const n=AGENCY_CUSTOM.name;
+  document.querySelectorAll('.side .who,[data-panel=inicio] .eyebrow').forEach(e=>{e.innerHTML=e.innerHTML.replace('Agencia Demo Centro',esc(n)).replace('AGENCIA DEMO CENTRO',esc(n.toUpperCase()))});
+  document.querySelectorAll('[data-panel=agencia] input').forEach(i=>{if(i.value==='Agencia Demo Centro')i.value=n});
+  document.querySelectorAll('a[href="informe.html"]').forEach(l=>l.href='informe.html'+location.search);
+}
 rows();admin();
 })();

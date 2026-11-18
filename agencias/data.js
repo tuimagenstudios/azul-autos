@@ -22,3 +22,13 @@ const CARS = [
   {id:14,agency:'norte',name:'Citroën C3',version:'1.2 Feel',year:2021,km:39000,price:17200000,currency:'ARS',fuel:'Nafta',box:'Manual',photo:14,vtv:true,owners:1,swap:true,finance:true},
   {id:15,agency:'centro',name:'Honda HR-V',version:'1.8 EXL CVT',year:2020,km:57000,price:25900,currency:'USD',fuel:'Nafta',box:'Automática',photo:15,vtv:true,owners:1,swap:true,finance:false}
 ];
+
+// Personalizar la agencia principal con ?agencia=Nombre (para propuestas)
+(function(){
+  const n=(new URLSearchParams(location.search).get('agencia')||'').trim().slice(0,60);
+  if(!n)return;
+  const a=AGENCIES[0];
+  a.name=n;
+  a.initials=n.split(/\s+/).filter(w=>w.length>2).map(w=>w[0]).join('').slice(0,3).toUpperCase()||n[0].toUpperCase();
+  window.AGENCY_CUSTOM=a;
+})();
