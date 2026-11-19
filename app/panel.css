@@ -4,7 +4,7 @@ body{margin:0;font:16px/1.5 'Segoe UI',system-ui,sans-serif;color:var(--noche);b
 button,input,select,textarea{font:inherit;color:inherit}
 a{color:inherit}
 .top{display:flex;align-items:center;gap:14px;padding:14px 20px;background:var(--noche);color:#fff;position:sticky;top:0;z-index:5}
-.logo{font-size:24px;font-weight:850;letter-spacing:-1.3px;text-decoration:none}.logo span{color:#8fb2ff}
+.logo{font-size:24px;font-weight:850;letter-spacing:-1.3px;text-decoration:none}.logo span{color:#4f86ff}
 .who{margin-left:auto;font-size:13px;color:#c3cfeb;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:45vw}
 .ghost{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:8px;padding:8px 14px;min-height:40px;cursor:pointer}
 .card .ghost,label.ghost{border-color:var(--linea);color:var(--azul)}
