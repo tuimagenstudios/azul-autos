@@ -34,15 +34,16 @@ window.addEventListener('azul:data', async ({ detail: { CARS } }) => {
   const cats = [
     { k: 'auto', t: 'AUTOS', img: 'portada/cut-autos.webp', cut: true, sub: 'para el día a día', ic: '🚗', cls: 'c-blue' },
     { k: 'suv', t: 'SUV', img: 'portada/cut-suv.webp', cut: true, sub: 'espacio para la familia', ic: '👨‍👩‍👧', cls: 'c-green' },
-    { k: 'pickup', t: 'PICKUPS', img: 'portada/pickups.jpg', sub: 'Hilux, Ranger, Amarok y más', ic: '🔥', cls: 'c-blue' }
+    { k: 'premium', t: 'PREMIUM', img: 'portada/cut-premium.webp', cut: true, sub: 'Audi, BMW, Mercedes y más', ic: '✨', cls: 'c-blue' }
   ];
   $('#popGrid').innerHTML = cats.map(c => {
-    const list = CARS.filter(x => type(x) === c.k);
+    const PREM = /^(audi|bmw|mercedes|mercedes-benz|volvo|lexus|porsche|land rover|mini|alfa romeo|ds)$/i;
+    const list = CARS.filter(x => c.k === 'premium' ? PREM.test((x.brand || '').trim()) : type(x) === c.k);
     const ars = list.filter(x => x.currency === 'ARS' && x.price).map(x => +x.price);
-    const desde = ars.length ? '$ ' + Math.min(...ars).toLocaleString('es-AR') : (list.length ? 'Consultá precios' : '—');
-    return `<button type="button" class="pop ${c.cls}" data-type="${c.k}"><span class="pop-tag">${c.t}</span><img src="${c.img}" alt="" loading="lazy"${c.cut ? ' class="cut""' : ''}><span class="pop-l">${ars.length ? 'Desde' : '&nbsp;'}</span><b class="pop-p">${esc(desde)}</b><span class="pop-s">${c.ic} ${esc(c.sub)}</span><span class="pop-n"><b>${list.length}</b> ${list.length === 1 ? 'vehículo disponible' : 'vehículos disponibles'}</span><span class="pop-go">→</span></button>`;
+    const desde = ars.length ? '$ ' + Math.min(...ars).toLocaleString('es-AR') : (list.length ? 'Consultá precios' : 'Muy pronto');
+    return `<button type="button" class="pop ${c.cls}" data-type="${c.k}"><span class="pop-tag">${c.t}</span><img src="${c.img}" alt="" loading="lazy"${c.cut ? ' class="cut"' : ''}><span class="pop-l">${ars.length ? 'Desde' : '&nbsp;'}</span><b class="pop-p">${esc(desde)}</b><span class="pop-s">${c.ic} ${esc(c.sub)}</span><span class="pop-n"><b>${list.length}</b> ${list.length === 1 ? 'vehículo disponible' : 'vehículos disponibles'}</span><span class="pop-go">→</span></button>`;
   }).join('');
-  $('#popGrid').onclick = e => { const b = e.target.closest('[data-type]'); if (b) filter({ type: b.dataset.type, brand: '', max: '' }); };
+  $('#popGrid').onclick = e => { const b = e.target.closest('[data-type]'); if (b) filter({ type: b.dataset.type === 'premium' ? '' : b.dataset.type, brand: '', max: '' }); };
 
   // Destacados: los marcados por el admin; si no hay, los más nuevos
   let dest = CARS.filter(c => c.featured);

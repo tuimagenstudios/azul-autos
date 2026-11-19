@@ -111,3 +111,17 @@
 .lux-hero{place-items:end center;padding-bottom:70px}.lux-content{padding-top:0}.lux-hero h1{font-size:clamp(30px,4.2vw,52px);letter-spacing:-1.2px;margin:0 0 22px;font-weight:800}.lux-count{display:none}.lux-search{background:#0b0f1e55}@media(max-width:760px){.lux-hero{min-height:560px;place-items:end center;padding:100px 0 60px}.lux-hero h1{font-size:30px}}
 /* Azul de marca (sin violeta) */.lux-hero h1 span{background:linear-gradient(90deg,#4f86ff,#4f86ff,#4f86ff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}.lux-go,.home-page header.topbar .btn{background:#184fe5;box-shadow:0 8px 24px #184fe566}.lux-go:hover,.home-page header.topbar .btn:hover{background:#123ab0}.eyebrow-v{color:#184fe5}.car-nav button:hover{background:#184fe5;border-color:#184fe5}.lux-shade{background:radial-gradient(ellipse at 50% 45%,#0b163022 0%,#0b1630aa 75%),linear-gradient(180deg,#0b163099 0%,#0b163033 35%,#0b163055 65%,#0b1630f0 100%)}
 .lux-hero h1 span{background:none;-webkit-background-clip:initial;background-clip:initial;color:#4f86ff;animation:none}.home-page header.topbar .logo span,.foot2 .logo span{color:#4f86ff}
+/* ===== Ajustes responsive ===== */
+.lux-hero h1{text-wrap:balance}
+section[id],#catalogo,#agencias,#masBuscado,#sumate{scroll-margin-top:84px}
+.card.car2 h3 small{display:block;margin-top:2px}
+@media(max-width:1000px){.pop-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:4px 16px 10px;scrollbar-width:none}.pop-grid::-webkit-scrollbar{display:none}.pop{flex:0 0 min(78%,360px);scroll-snap-align:start}}
+@media(max-width:400px){.lux-hero h1{font-size:26px;letter-spacing:-.6px}.lux-search{padding:14px;gap:10px}.lux-search select{padding:10px 12px;font-size:14px}.home-page header.topbar .logo{font-size:22px}}
+@media(max-width:760px){.sec-block{margin:40px 0}.sec-block h2{margin-bottom:16px}.car-nav{display:none}.brands-band{padding:26px 0 18px;margin-bottom:34px}}
+@media(min-width:1600px){.lux-content{width:min(1100px,80vw)}}
+/* Tarjetas apiladas y compactas en celular/tablet chica */
+@media(max-width:1000px){.pop-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;margin:0;padding:0;gap:12px}.pop{min-height:180px;padding:16px}.pop-p{font-size:20px}.pop-tag{margin-bottom:14px}}
+@media(max-width:760px){.pop-grid{grid-template-columns:1fr}.pop{flex:none;min-height:0;padding:16px 18px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 12px}.pop img,.pop img.cut{position:static;grid-column:2;grid-row:1/5;width:130px;height:78px;object-fit:contain;mask-image:none;-webkit-mask-image:none}.pop img:not(.cut){object-fit:cover;border-radius:10px}.pop-tag{margin-bottom:6px;justify-self:start}.pop-l{margin-top:0}.pop-p{font-size:18px}.pop-s{grid-column:1}.pop-n{grid-column:1/-1;display:flex;align-items:baseline;gap:6px;margin-top:6px}.pop-n b{display:inline;font-size:16px}.pop-go{width:34px;height:34px;right:14px;bottom:12px;font-size:15px}}
+
+/* Hero celular: buscador compacto para que se vea el video */
+@media(max-width:760px){.lux-hero{min-height:0;height:100svh;max-height:760px;padding:0 0 64px}.lux-hero h1{font-size:26px;margin:0 0 14px}.lux-search{padding:10px;gap:8px;border-radius:18px;background:#0b0f1e55}.lux-search label{font-size:0;letter-spacing:0}.lux-search select{margin-top:0;min-height:40px;padding:8px 12px;font-size:14px}.lux-go{min-height:42px;padding:10px}.lux-down{bottom:14px;width:36px;height:36px;font-size:18px}}
