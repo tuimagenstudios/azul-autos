@@ -106,3 +106,4 @@
 
 @media(prefers-reduced-motion:reduce){.lux-slides img{animation:none}.lux-slides img:first-child{opacity:1}.lux-sweep,.marquee-track,.lux-hero h1 span,.lux-down{animation:none}}
 .home-page header.topbar{flex-wrap:nowrap!important}.home-page header.topbar nav{margin-left:auto;width:auto!important;flex-wrap:nowrap!important;justify-content:flex-end!important}@media(max-width:600px){.home-page header.topbar .btn{padding:8px 16px;font-size:14px}}
+.pop img.cut{top:6px;right:-4%;width:62%;height:58%;object-fit:contain;border-radius:0;mask-image:none;-webkit-mask-image:none;filter:drop-shadow(0 14px 18px #000a)}.pop:hover img.cut{transform:translateX(-6px) scale(1.04)}

@@ -28,15 +28,15 @@ window.addEventListener('azul:data', async ({ detail: { CARS } }) => {
   const type = window.AZUL_TYPE, card = window.AZUL_CARD;
   // Lo que más se busca
   const cats = [
-    { k: 'auto', t: 'AUTOS', img: 'portada/autos.jpg', sub: 'para el día a día', ic: '🚗', cls: 'c-blue' },
-    { k: 'suv', t: 'SUV', img: 'portada/suv.jpg', sub: 'espacio para la familia', ic: '👨‍👩‍👧', cls: 'c-green' },
+    { k: 'auto', t: 'AUTOS', img: 'portada/cut-autos.webp', cut: true, sub: 'para el día a día', ic: '🚗', cls: 'c-blue' },
+    { k: 'suv', t: 'SUV', img: 'portada/cut-suv.webp', cut: true, sub: 'espacio para la familia', ic: '👨‍👩‍👧', cls: 'c-green' },
     { k: 'pickup', t: 'PICKUPS', img: 'portada/pickups.jpg', sub: 'Hilux, Ranger, Amarok y más', ic: '🔥', cls: 'c-blue' }
   ];
   $('#popGrid').innerHTML = cats.map(c => {
     const list = CARS.filter(x => type(x) === c.k);
     const ars = list.filter(x => x.currency === 'ARS' && x.price).map(x => +x.price);
     const desde = ars.length ? '$ ' + Math.min(...ars).toLocaleString('es-AR') : (list.length ? 'Consultá precios' : '—');
-    return `<button type="button" class="pop ${c.cls}" data-type="${c.k}"><span class="pop-tag">${c.t}</span><img src="${c.img}" alt="" loading="lazy"><span class="pop-l">${ars.length ? 'Desde' : '&nbsp;'}</span><b class="pop-p">${esc(desde)}</b><span class="pop-s">${c.ic} ${esc(c.sub)}</span><span class="pop-n"><b>${list.length}</b> ${list.length === 1 ? 'vehículo disponible' : 'vehículos disponibles'}</span><span class="pop-go">→</span></button>`;
+    return `<button type="button" class="pop ${c.cls}" data-type="${c.k}"><span class="pop-tag">${c.t}</span><img src="${c.img}" alt="" loading="lazy"${c.cut ? ' class="cut""' : ''}><span class="pop-l">${ars.length ? 'Desde' : '&nbsp;'}</span><b class="pop-p">${esc(desde)}</b><span class="pop-s">${c.ic} ${esc(c.sub)}</span><span class="pop-n"><b>${list.length}</b> ${list.length === 1 ? 'vehículo disponible' : 'vehículos disponibles'}</span><span class="pop-go">→</span></button>`;
   }).join('');
   $('#popGrid').onclick = e => { const b = e.target.closest('[data-type]'); if (b) filter({ type: b.dataset.type, brand: '', max: '' }); };
 
