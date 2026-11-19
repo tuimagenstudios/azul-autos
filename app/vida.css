@@ -1,0 +1,89 @@
+/* ===== Parte de abajo con más vida ===== */
+.bleed{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+.why{position:relative;overflow:hidden;margin-top:80px;padding:90px 24px;color:#fff;
+  background:radial-gradient(700px 420px at 12% 0%,#2f6bff55,transparent 60%),radial-gradient(600px 400px at 95% 100%,#7c3aed33,transparent 60%),linear-gradient(180deg,#0b1630,#0f1f45)}
+.why::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffff14 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(180deg,#000,transparent 85%)}
+.why-inner{position:relative;max-width:1176px;margin:auto}
+.why-eye{color:#8fb2ff}
+.why h2{font-size:clamp(32px,4.6vw,54px);line-height:1.05;letter-spacing:-1.5px;margin:12px 0 44px}
+.why h2 span{background:linear-gradient(90deg,#8fb2ff,#4f86ff,#b48cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.why-card{position:relative;overflow:hidden;padding:30px;border-radius:20px;background:linear-gradient(160deg,#ffffff12,#ffffff05);border:1px solid #ffffff1f;backdrop-filter:blur(6px);transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s}
+.why-card::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,#4f86ff,transparent 40%,transparent 60%,#b48cff);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s}
+.why-card:hover{transform:translateY(-8px);box-shadow:0 24px 50px #0008,0 0 40px #2f6bff33}
+.why-card:hover::after{opacity:1}
+.ghost{position:absolute;right:18px;top:6px;font-size:96px;font-weight:900;line-height:1;color:#ffffff0d;letter-spacing:-4px;transition:color .35s,transform .35s}
+.why-card:hover .ghost{color:#4f86ff2e;transform:translateY(4px)}
+.why-ic{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,#3d7bff,#1446d8);box-shadow:0 10px 30px #2f6bff66;margin-bottom:22px;transition:transform .35s}
+.why-card:hover .why-ic{transform:rotate(-8deg) scale(1.08)}
+.why-ic svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.why-tag{font-size:11px;letter-spacing:2.5px;font-weight:800;color:#8fb2ff}
+.why-card h3{font-size:22px;margin:6px 0 10px;letter-spacing:-.4px}
+.why-card p{color:#c3cfeb;margin:0;font-size:15px}
+.stats-band{display:grid;grid-template-columns:repeat(4,1fr);margin-top:46px;border-radius:20px;overflow:hidden;background:#ffffff0d;border:1px solid #ffffff1a}
+.stats-band div{padding:26px 20px;text-align:center;border-right:1px solid #ffffff14}
+.stats-band div:last-child{border-right:0}
+.stats-band b{display:block;font-size:clamp(34px,4vw,50px);font-weight:900;letter-spacing:-1.5px;line-height:1;background:linear-gradient(180deg,#fff,#9db7f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats-band span{display:block;margin-top:8px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8fb2ff;font-weight:700}
+
+/* Sumá tu agencia */
+.join2{position:relative;overflow:hidden;margin:80px 0 70px;border-radius:28px;padding:56px;display:grid;grid-template-columns:1.15fr 1fr;gap:30px;align-items:center;color:#fff;
+  background:linear-gradient(120deg,#184fe5,#2f6bff 40%,#5b3df5);background-size:200% 200%;animation:shift 12s ease-in-out infinite}
+@keyframes shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.join2::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff12 1px,transparent 1px),linear-gradient(90deg,#ffffff12 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(circle at 80% 50%,#000,transparent 70%)}
+.join2-text,.join2-art{position:relative}
+.j-eye{color:#dbe6ff}
+.join2 h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-1.2px;margin:12px 0 20px}
+.join2 h2 span{color:#ffe08a}
+.j-list{list-style:none;padding:0;margin:0 0 26px}
+.j-list li{padding:7px 0 7px 32px;position:relative;font-size:16px;color:#eef3ff}
+.j-list li::before{content:"✓";position:absolute;left:0;top:7px;width:22px;height:22px;border-radius:50%;background:#ffffff26;display:grid;place-items:center;font-size:12px;font-weight:900}
+.j-btns{display:flex;gap:12px;flex-wrap:wrap}
+.j-main{background:#fff;color:#123ab0;box-shadow:0 10px 30px #0b163055}
+.j-main:hover{background:#ffe08a;color:#0b1630;transform:translateY(-2px)}
+.j-ghost{background:transparent;border:2px solid #ffffff80;color:#fff}
+.j-ghost:hover{background:#ffffff1a}
+.btn{transition:transform .2s,background .2s,box-shadow .2s}
+.join2-art{height:280px}
+.orb{position:absolute;right:10%;top:12%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ffffff55,#ffffff08 60%);filter:blur(2px)}
+.float{position:absolute;z-index:1;background:#fff;color:#0b1630;border-radius:16px;padding:14px 18px;box-shadow:0 18px 40px #0b163055;font-weight:700;animation:bob 5s ease-in-out infinite}
+.float b{font-size:30px;display:block;line-height:1;color:#184fe5}
+.float span{font-size:12px;color:#5b667a;font-weight:600}
+.f1{left:4%;top:8%}
+.f2{right:2%;top:42%;animation-delay:-1.6s;color:#0f7a4f}
+.f3{left:18%;bottom:4%;animation-delay:-3.2s;display:flex;align-items:flex-end;gap:5px}
+.f3 i{display:block;width:10px;border-radius:3px;background:#184fe5}
+.f3 i:nth-child(1){height:16px}.f3 i:nth-child(2){height:24px}.f3 i:nth-child(3){height:32px}.f3 i:nth-child(4){height:42px;background:#0b1630}
+.f3 span{margin-left:8px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* Footer */
+.foot2{background:#0b1630;color:#c3cfeb;padding:56px 24px 0;font-size:14px;border-top:0;display:block}
+.foot2-in{max-width:1176px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;padding-bottom:40px}
+.foot2 .logo{color:#fff;font-size:28px}.foot2 .logo span{color:#4f86ff}
+.f-brand p{max-width:360px;margin-top:12px;color:#9fb0cf}
+.f-col b{display:block;color:#fff;margin-bottom:10px;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.f-col a{display:block;padding:5px 0;color:#9fb0cf;transition:color .2s,transform .2s}
+.f-col a:hover{color:#fff;transform:translateX(4px)}
+.f-bottom{max-width:1176px;margin:auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #ffffff1a;padding:20px 0 28px;font-size:12px;color:#7d8db0}
+.f-bottom a:hover{color:#fff}
+
+/* Tarjetas de autos con más vida */
+.card{transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 44px #10203d26;border-color:#c9d6f5}
+.card .photo img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.card:hover .photo img{transform:scale(1.06)}
+.story .ring{animation:spinring 8s linear infinite paused}
+.story:hover .ring{animation-play-state:running}
+@keyframes spinring{to{filter:hue-rotate(40deg)}}
+
+/* Aparecer al bajar */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.why-grid .reveal:nth-child(2){transition-delay:.12s}
+.why-grid .reveal:nth-child(3){transition-delay:.24s}
+
+@media(max-width:900px){.why-grid{grid-template-columns:1fr}.stats-band{grid-template-columns:1fr 1fr}.stats-band div:nth-child(2){border-right:0}.stats-band div:nth-child(-n+2){border-bottom:1px solid #ffffff14}.join2{grid-template-columns:1fr;padding:36px 26px}.join2-art{height:220px}.foot2-in{grid-template-columns:1fr 1fr}.f-brand{grid-column:1/-1}}
+@media(max-width:600px){.why{padding:64px 16px;margin-top:56px}.why-card{padding:24px}.join2{margin:56px 0 48px;border-radius:22px}.j-btns .btn{flex:1;text-align:center}.join2-art{height:200px}.float{padding:10px 14px}.float b{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.float,.join2{animation:none}}
+html,body{overflow-x:clip}.bleed{margin-left:calc(50% - 50dvw);margin-right:calc(50% - 50dvw)}@supports not (overflow:clip){html,body{overflow-x:hidden}}

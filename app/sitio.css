@@ -1,0 +1,16 @@
+/* Colores de agencias sin logo */
+.agency-mark[data-color="0"],.ini[data-color="0"]{background:#184fe5}
+.agency-mark[data-color="1"],.ini[data-color="1"]{background:#0f8a5f}
+.agency-mark[data-color="2"],.ini[data-color="2"]{background:#c2410c}
+.agency-mark[data-color="3"],.ini[data-color="3"]{background:#7c3aed}
+.agency-mark[data-color="4"],.ini[data-color="4"]{background:#0e7490}
+.agency-mark[data-color="5"],.ini[data-color="5"]{background:#b45309}
+.story .ring .ini[data-color]{color:#fff}
+/* Galería de la ficha */
+.gal{display:flex;gap:8px;overflow-x:auto;margin:-10px 0 16px;padding-bottom:4px}
+.gal button{flex:none;width:76px;height:56px;padding:0;border:2px solid transparent;border-radius:8px;overflow:hidden;cursor:pointer;background:var(--niebla)}
+.gal button:hover,.gal button:focus{border-color:var(--azul)}
+.gal img{width:100%;height:100%;object-fit:cover}
+.desc{white-space:pre-line;margin:14px 0}
+.card .photo img[src$=".svg"]{object-fit:contain;padding:30px;background:var(--niebla)}
+.story .ring .ini[data-color="0"]{background:#184fe5}.story .ring .ini[data-color="1"]{background:#0f8a5f}.story .ring .ini[data-color="2"]{background:#c2410c}.story .ring .ini[data-color="3"]{background:#7c3aed}.story .ring .ini[data-color="4"]{background:#0e7490}.story .ring .ini[data-color="5"]{background:#b45309}
