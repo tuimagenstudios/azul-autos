@@ -2,7 +2,7 @@
 .agency-mark[data-color="0"],.ini[data-color="0"]{background:#184fe5}
 .agency-mark[data-color="1"],.ini[data-color="1"]{background:#0f8a5f}
 .agency-mark[data-color="2"],.ini[data-color="2"]{background:#c2410c}
-.agency-mark[data-color="3"],.ini[data-color="3"]{background:#7c3aed}
+.agency-mark[data-color="3"],.ini[data-color="3"]{background:#1e40af}
 .agency-mark[data-color="4"],.ini[data-color="4"]{background:#0e7490}
 .agency-mark[data-color="5"],.ini[data-color="5"]{background:#b45309}
 .story .ring .ini[data-color]{color:#fff}
@@ -13,6 +13,6 @@
 .gal img{width:100%;height:100%;object-fit:cover}
 .desc{white-space:pre-line;margin:14px 0}
 .card .photo img[src$=".svg"]{object-fit:contain;padding:30px;background:var(--niebla)}
-.story .ring .ini[data-color="0"]{background:#184fe5}.story .ring .ini[data-color="1"]{background:#0f8a5f}.story .ring .ini[data-color="2"]{background:#c2410c}.story .ring .ini[data-color="3"]{background:#7c3aed}.story .ring .ini[data-color="4"]{background:#0e7490}.story .ring .ini[data-color="5"]{background:#b45309}
+.story .ring .ini[data-color="0"]{background:#184fe5}.story .ring .ini[data-color="1"]{background:#0f8a5f}.story .ring .ini[data-color="2"]{background:#c2410c}.story .ring .ini[data-color="3"]{background:#1e40af}.story .ring .ini[data-color="4"]{background:#0e7490}.story .ring .ini[data-color="5"]{background:#b45309}
 .agency-hero{position:relative}.hero-social{position:absolute;top:20px;right:20px;display:flex;gap:10px}.soc{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;transition:transform .2s,box-shadow .2s}.soc svg{width:24px;height:24px;fill:currentColor}.soc:hover{transform:translateY(-3px) scale(1.06)}.wa-ic{background:#25d366;box-shadow:0 6px 18px #25d36655}.ig-ic{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%);box-shadow:0 6px 18px #d6249f55}@media(max-width:600px){.hero-social{top:16px;right:16px}.soc{width:40px;height:40px}.soc svg{width:21px;height:21px}}
 .agency-hero:has(.hero-social)>div:last-child{padding-right:112px}@media(max-width:600px){.agency-hero:has(.hero-social)>div:last-child{padding-right:0}}

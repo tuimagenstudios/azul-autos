@@ -3,7 +3,7 @@
 .home-page header.topbar .logo{color:#fff}
 .home-page header.topbar .logo span{color:#8fb2ff}
 .home-page header.topbar nav a{color:#e8eefc}
-.home-page header.topbar .btn{background:#5b6cff;color:#fff;border-radius:30px;padding:10px 20px}
+.home-page header.topbar .btn{background:#184fe5;color:#fff;border-radius:30px;padding:10px 20px}
 .home-page header.topbar.solid{background:#0b1630f2;backdrop-filter:blur(10px);box-shadow:0 6px 24px #0004;padding:10px 32px}
 @media(max-width:600px){.home-page header.topbar{padding:12px 16px}.home-page header.topbar.solid{padding:8px 16px}.home-page header.topbar nav .optional{display:none}}
 .home-page .mobile-links{display:none!important}
@@ -17,22 +17,22 @@
 .lux-slides img:nth-child(3){animation-delay:12s;transform-origin:50% 40%}
 .lux-slides img:nth-child(4){animation-delay:18s;transform-origin:55% 55%}
 @keyframes luxFade{0%{opacity:0;transform:scale(1.18) translateX(1.5%)}6%{opacity:1}25%{opacity:1}31%{opacity:0;transform:scale(1.02) translateX(-1.5%)}100%{opacity:0}}
-.lux-shade{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,#0b0f1e33 0%,#0b0f1ecc 70%),linear-gradient(180deg,#0b0f1e99 0%,#1a1240aa 55%,#0b0f1ef2 100%)}
-.lux-sweep{position:absolute;inset:-20%;background:linear-gradient(105deg,transparent 40%,#ffffff22 48%,#a9b8ff33 50%,transparent 58%);animation:luxSweep 7s ease-in-out infinite;mix-blend-mode:screen}
+.lux-shade{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,#0b0f1e33 0%,#0b0f1ecc 70%),linear-gradient(180deg,#0b0f1e99 0%,#0f1f45aa 55%,#0b0f1ef2 100%)}
+.lux-sweep{position:absolute;inset:-20%;background:linear-gradient(105deg,transparent 40%,#ffffff22 48%,#8fb2ff33 50%,transparent 58%);animation:luxSweep 7s ease-in-out infinite;mix-blend-mode:screen}
 @keyframes luxSweep{0%{transform:translateX(-60%)}60%,100%{transform:translateX(60%)}}
-.lux-floor{position:absolute;left:0;right:0;bottom:0;height:28%;background:linear-gradient(180deg,transparent,#5b6cff1f 60%,#0b0f1e);border-top:1px solid #8fb2ff22}
+.lux-floor{position:absolute;left:0;right:0;bottom:0;height:28%;background:linear-gradient(180deg,transparent,#184fe51f 60%,#0b0f1e);border-top:1px solid #8fb2ff22}
 .lux-content{position:relative;z-index:2;width:min(1000px,92vw);padding-top:40px}
 .lux-eyebrow{font-size:12px;letter-spacing:3px;font-weight:800;color:#b9c6ff;margin-bottom:14px}
 .lux-hero h1{font-size:clamp(40px,7vw,86px);line-height:1;letter-spacing:-2.5px;margin:0 0 16px;font-weight:900;text-shadow:0 6px 40px #0008}
-.lux-hero h1 span{background:linear-gradient(90deg,#7c8cff,#b8a6ff,#7c8cff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:luxShine 6s linear infinite}
+.lux-hero h1 span{background:linear-gradient(90deg,#4f86ff,#8fb2ff,#4f86ff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:luxShine 6s linear infinite}
 @keyframes luxShine{to{background-position:200% 0}}
 .lux-hero p{color:#dfe5f7;font-size:clamp(15px,1.6vw,19px);margin:0 auto 28px;max-width:620px}
 .lux-search{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:12px;align-items:end;padding:18px;border-radius:20px;background:#ffffff14;border:1px solid #ffffff2e;backdrop-filter:blur(16px);text-align:left;box-shadow:0 20px 60px #0006}
 .lux-search label{font-size:11px;letter-spacing:1px;font-weight:700;color:#c7d2f5;margin:0}
 .lux-search select{display:block;width:100%;margin-top:6px;background:#0b0f1e66;border:1px solid #ffffff33;color:#fff;border-radius:30px;padding:12px 16px;min-height:48px;font-size:15px}
 .lux-search select option{color:#101f3d}
-.lux-go{background:#5b6cff;border-radius:30px;min-height:48px;padding:12px 24px;white-space:nowrap;box-shadow:0 8px 24px #5b6cff66}
-.lux-go:hover{background:#4a5bf0}
+.lux-go{background:#184fe5;border-radius:30px;min-height:48px;padding:12px 24px;white-space:nowrap;box-shadow:0 8px 24px #184fe566}
+.lux-go:hover{background:#123ab0}
 .lux-count{margin-top:18px;font-size:13px;color:#c7d2f5;letter-spacing:.5px}
 .lux-down{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;color:#fff;font-size:22px;width:44px;height:44px;border-radius:50%;border:1px solid #ffffff55;display:grid;place-items:center;animation:luxBob 2.4s ease-in-out infinite}
 @keyframes luxBob{50%{transform:translate(-50%,6px)}}
@@ -40,13 +40,13 @@
 
 /* ===== Secciones ===== */
 .sec-block{margin:56px 0}
-.eyebrow-v{font-size:12px;letter-spacing:2.5px;font-weight:800;color:#5b6cff;margin-bottom:6px}
+.eyebrow-v{font-size:12px;letter-spacing:2.5px;font-weight:800;color:#184fe5;margin-bottom:6px}
 .eyebrow-v.center{text-align:center}
 .sec-block h2{font-size:clamp(26px,3.4vw,38px);letter-spacing:-1px;margin:0 0 22px}
 .sec-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
 .car-nav{display:flex;gap:8px;margin-bottom:22px}
 .car-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--linea);background:#fff;font-size:18px;cursor:pointer;transition:background .2s,color .2s}
-.car-nav button:hover{background:#5b6cff;color:#fff;border-color:#5b6cff}
+.car-nav button:hover{background:#184fe5;color:#fff;border-color:#184fe5}
 
 /* Lo que más se busca */
 .pop-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}

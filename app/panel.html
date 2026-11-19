@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data: blob: https://ozxabrgegpeulwwqfzsy.supabase.co; connect-src https://ozxabrgegpeulwwqfzsy.supabase.co wss://ozxabrgegpeulwwqfzsy.supabase.co; form-action 'none'; base-uri 'none'; object-src 'none'">
-<title>Panel de agencia — Azul Autos</title><link rel="stylesheet" href="panel.css?v=2"></head><body>
+<title>Panel de agencia — Azul Autos</title><link rel="stylesheet" href="panel.css?v=9"></head><body>
 
 <header class="top"><a class="logo" href="../index.html">azul<span>autos.</span></a><span class="who" id="who"></span><button id="logout" class="ghost" hidden>Salir</button></header>
 
@@ -96,15 +96,15 @@
 <form class="card" id="newAgency"><h2>Dar de alta una agencia</h2>
 <div class="grid2"><label>Nombre<input id="n_name" required maxlength="80"></label><label>Dirección web <small class="muted">(azul-autos.com/…)</small><input id="n_slug" required pattern="[a-z0-9-]{3,60}" maxlength="60" placeholder="nombre-agencia"></label></div>
 <button class="btn">Crear agencia</button><p id="newAgencyMsg" class="msg" role="status"></p></form>
-<form class="card" id="addMember"><h2>Sumar una persona a una agencia</h2>
-<p class="small muted">1) Invitala desde Supabase → Authentication → «Invite user» con su correo. 2) Elegí la agencia y escribí el mismo correo acá.</p>
-<div class="grid2"><label>Agencia<select id="m_agency"></select></label><label>Correo<input id="m_email" type="email" required maxlength="254"></label></div>
-<button class="btn">Sumar</button><p id="memberMsg" class="msg" role="status"></p></form>
+<form class="card" id="addMember"><h2>Invitar a una persona</h2>
+<p class="small muted">Le llega un correo con un enlace para entrar al panel. Si ya tenía cuenta, se suma directo.</p>
+<div class="grid2"><label>Correo<input id="m_email" type="email" required maxlength="254" placeholder="nombre@ejemplo.com"></label><label>Para qué<select id="m_role"><option value="agency">Manejar una agencia (cargar autos)</option><option value="admin">Administrador de Azul Autos</option></select></label><label class="full" id="m_agencyWrap">Agencia<select id="m_agency"></select></label></div>
+<button class="btn" id="m_btn">Enviar invitación</button><p id="memberMsg" class="msg" role="status"></p></form>
 </section>
 
 </main></div>
 <div id="toast" class="toast" role="status" hidden></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="config.js?v=1"></script>
-<script src="panel.js?v=3"></script>
+<script src="panel.js?v=9"></script>
 </body></html>

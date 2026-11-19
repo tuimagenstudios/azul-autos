@@ -8,7 +8,7 @@ const pub = p => p ? sb.storage.from(C.bucket).getPublicUrl(p).data.publicUrl : 
 const money = c => c.price ? (c.currency === 'USD' ? 'US$ ' : '$ ') + Number(c.price).toLocaleString('es-AR') : 'Consultar precio';
 const initials = n => n.split(/\s+/).filter(w => w.length > 2).map(w => w[0]).join('').slice(0, 3).toUpperCase() || n[0].toUpperCase();
 const waNice = n => n ? '+' + String(n).replace(/^54(9?)(\d{4})(\d{2})(\d{4})$/, '54 $1$2 $3-$4').replace('  ', ' ') : '';
-const COLORS = ['#184fe5', '#0f8a5f', '#c2410c', '#7c3aed', '#0e7490', '#b45309'];
+const COLORS = ['#184fe5', '#0f8a5f', '#c2410c', '#1e40af', '#0e7490', '#b45309'];
 
 let AG = [], CARS = [];
 const ag = slug => AG.find(a => a.slug === slug);

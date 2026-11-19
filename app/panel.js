@@ -260,12 +260,18 @@ $('#newAgency').addEventListener('submit', async e => {
   if (error) return msg('#newAgencyMsg', /duplicate|unique/.test(error.message) ? 'Esa dirección ya existe.' : errText(error), true);
   msg('#newAgencyMsg', 'Agencia creada como «Pendiente». Activala cuando tenga autos.'); e.target.reset(); start();
 });
+$('#m_role').addEventListener('change', () => { $('#m_agencyWrap').hidden = $('#m_role').value === 'admin'; });
 $('#addMember').addEventListener('submit', async e => {
   e.preventDefault();
-  const { data, error } = await sb.rpc('admin_add_member', { p_agency: $('#m_agency').value, p_email: $('#m_email').value.trim(), p_role: 'owner' });
-  if (error) return msg('#memberMsg', errText(error), true);
-  if (data === 'NO_USER') return msg('#memberMsg', 'Ese correo todavía no está invitado. Invitalo primero en Supabase → Authentication.', true);
-  msg('#memberMsg', 'Listo: ya puede entrar al panel con ese correo.'); e.target.reset();
+  const admin = $('#m_role').value === 'admin', email = $('#m_email').value.trim();
+  if (admin && !confirm(`¿Hacer administrador de Azul Autos a ${email}? Va a poder ver y cambiar todas las agencias.`)) return;
+  $('#m_btn').disabled = true; msg('#memberMsg', 'Enviando…');
+  const { data, error } = await sb.functions.invoke('admin-invitar', { body: { email, admin, agency_id: admin ? null : $('#m_agency').value } });
+  $('#m_btn').disabled = false;
+  let err = error && (error.context && typeof error.context.json === 'function' ? (await error.context.json().catch(() => null))?.error : error.message);
+  if (err) return msg('#memberMsg', err, true);
+  msg('#memberMsg', data && data.invited ? `Listo: le enviamos la invitación a ${email}. Que revise su correo (y Spam).` : `Listo: ${email} ya tenía cuenta y quedó sumado. Puede entrar con «Enviarme el enlace».`);
+  e.target.reset(); $('#m_agencyWrap').hidden = false;
 });
 
 // ===== Clicks generales =====
