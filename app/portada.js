@@ -9,6 +9,10 @@ const bar = $('#topbar');
 const onScroll = () => bar && bar.classList.toggle('solid', scrollY > 60 || !$('#agencyPage').hidden);
 addEventListener('scroll', onScroll, { passive: true }); addEventListener('hashchange', onScroll); onScroll();
 
+// Video de portada: versión liviana en celular; si el navegador no reproduce, queda la imagen
+const vid = document.getElementById('heroVideo');
+if (vid && !matchMedia('(prefers-reduced-motion: reduce)').matches) { vid.src = innerWidth < 760 ? 'portada/portada-movil.mp4' : 'portada/portada.mp4'; vid.play().catch(() => {}); }
+
 // Buscador de la portada
 $('#heroSearch').addEventListener('submit', e => { e.preventDefault(); filter({ brand: $('#hBrand').value, type: $('#hType').value, max: $('#hMax').value }); });
 
