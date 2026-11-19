@@ -76,7 +76,7 @@ async function main(){
   }).sort((a, b) => b.v - a.v);
   const est = c => c.status === 'sold' ? 'Vendido ✓' : c.status === 'paused' ? 'Pausado' : new Date(c.expires_at) < now ? 'Vencido' : 'Publicado';
   const ph = c => { const p = (c.car_photos || []).sort((a, b) => a.position - b.position)[0]; return p ? `<img src="${esc(pub(p.path))}" alt="">` : ''; };
-  $('#carsTable').innerHTML = `<table><thead><tr><th>Auto</th><th>Visitas</th><th>WhatsApp</th><th>Conversión</th><th>Estado</th></tr></thead><tbody>${rows.length ? rows.map(c => `<tr><td class="car">${ph(c)}<span><b>${esc(c.brand)} ${esc(c.model)} ${c.year}</b><br>${esc(money(c))}</span></td><td>${c.v}</td><td>${c.w}</td><td><span class="pill ${!c.v ? 'mid' : c.conv >= 5 ? 'good' : c.conv >= 2 ? 'mid' : 'bad'}">${c.v ? fmtPct(c.conv) : '—'}</span></td><td>${est(c)}</td></tr>`).join('') : '<tr class="empty-row"><td colspan="5">Todavía no hay autos cargados.</td></tr>'}</tbody></table>`;
+  $('#carsTable').innerHTML = `<table><thead><tr><th>Auto</th><th>Visitas</th><th>WhatsApp</th><th>Conversión</th><th>Estado</th></tr></thead><tbody>${rows.length ? rows.map(c => `<tr><td class="car">${ph(c)}<span><b>${esc(c.brand)} ${esc(c.model)} ${c.year}</b><br>${esc(money(c))}</span></td><td>${c.v}</td><td>${c.w}</td><td><span class="pill ${c.v < 10 ? 'mid' : c.conv >= 5 ? 'good' : c.conv >= 2 ? 'mid' : 'bad'}">${c.v < 10 ? '—' : fmtPct(c.conv)}</span></td><td>${est(c)}</td></tr>`).join('') : '<tr class="empty-row"><td colspan="5">Todavía no hay autos cargados.</td></tr>'}</tbody></table>`;
 
   // Recomendaciones automáticas (reglas fijas)
   const tips = [];
