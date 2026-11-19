@@ -269,7 +269,14 @@ $('#addMember').addEventListener('submit', async e => {
   const { data, error } = await sb.functions.invoke('admin-invitar', { body: { email, admin, agency_id: admin ? null : $('#m_agency').value } });
   $('#m_btn').disabled = false;
   let err = error && (error.context && typeof error.context.json === 'function' ? (await error.context.json().catch(() => null))?.error : error.message);
-  if (err) return msg('#memberMsg', err, true);
+  // Plan B mientras la función no esté publicada: sumar a alguien ya invitado
+  if (error && !admin && (!err || /fetch|Failed|not found|404/i.test(err))) {
+    const r = await sb.rpc('admin_add_member', { p_agency: $('#m_agency').value, p_email: email, p_role: 'owner' });
+    if (r.error) return msg('#memberMsg', errText(r.error), true);
+    if (r.data === 'NO_USER') return msg('#memberMsg', 'Por ahora hay que invitarlo primero en Supabase → Authentication → «Invite user» y después sumarlo acá.', true);
+    msg('#memberMsg', `Listo: ${email} quedó sumado a la agencia.`); e.target.reset(); return;
+  }
+  if (err) return msg('#memberMsg', /fetch|Failed/i.test(err) ? 'La invitación automática todavía no está activa. Avisale a Tuimagen Studio.' : err, true);
   msg('#memberMsg', data && data.invited ? `Listo: le enviamos la invitación a ${email}. Que revise su correo (y Spam).` : `Listo: ${email} ya tenía cuenta y quedó sumado. Puede entrar con «Enviarme el enlace».`);
   e.target.reset(); $('#m_agencyWrap').hidden = false;
 });
