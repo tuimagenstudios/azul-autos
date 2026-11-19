@@ -43,7 +43,7 @@ tr:nth-child(even) td{background:#f6f8fc}
 .s1{background:#e6f6ee;color:#0f7a4f}.s2{background:#fff4e0;color:#9a5b00}.s3{background:#eef0f4;color:#4b5565}.s4{background:#fdecea;color:#b42318}
 .foot{position:absolute;bottom:9mm;left:17mm;right:17mm;display:flex;justify-content:space-between;font-size:10.5px;color:#8a94a8}
 .toc li{padding:5px 0;border-bottom:1px solid #e3e9f6;font-size:14.5px}.toc b{color:#184fe5;margin-right:8px}
-</style></head><body>
+.mail{border:1px solid #dce2ec;border-radius:14px;overflow:hidden;margin:10px 0;font-size:12.5px}.mail .mh{background:#f3f5f8;padding:10px 14px;border-bottom:1px solid #dce2ec}.mail .mb{padding:14px}.mail a{color:#184fe5;text-decoration:underline;font-weight:700}.kit{display:grid;grid-template-columns:1fr 1fr;gap:10px}.kit figure{margin:0;border:1px solid #dce2ec;border-radius:12px;overflow:hidden;background:#f6f8fc}.kit img{display:block;width:100%}.kit figcaption{padding:6px 10px;font-size:11.5px;color:#5b667a}.kit figcaption b{color:#101f3d}</style></head><body>
 
 <section class="pg cover">
 <div class="logo">azul<span>autos.</span></div>
@@ -61,7 +61,7 @@ tr:nth-child(even) td{background:#f6f8fc}
 <h2>Qué vas a encontrar</h2>
 <ol class="toc" style="list-style:none;padding:0">
 <li><b>1</b>Los enlaces que importan</li>
-<li><b>2</b>Entrar al panel por primera vez</li>
+<li><b>2</b>Aceptar la invitación de administrador (el correo, paso a paso)</li><li><b>2b</b>Entrar al panel todos los días</li>
 <li><b>3</b>Recorrido por el panel</li>
 <li><b>4</b>Dar de alta una agencia</li>
 <li><b>5</b>Invitar a la agencia (o a otro administrador)</li>
@@ -71,7 +71,7 @@ tr:nth-child(even) td{background:#f6f8fc}
 <li><b>9</b>Estados de una agencia y miembros</li>
 <li><b>10</b>Informe mensual y estadísticas</li>
 <li><b>11</b>Rutina recomendada del administrador</li>
-<li><b>12</b>Problemas frecuentes y soluciones</li>
+<li><b>12</b>Problemas frecuentes y soluciones</li><li><b>13</b>Kit de marca: logos, foto de perfil y banners</li>
 </ol>
 <div class="box tip"><b>La idea en una frase:</b> nosotros damos de alta a cada agencia y la invitamos; la agencia entra a su panel y carga sus autos; los autos aparecen solos en la web pública con su logo y su botón de WhatsApp.</div>
 <h3>¿Quién hace qué?</h3>
@@ -95,20 +95,39 @@ tr:nth-child(even) td{background:#f6f8fc}
 <div class="box warn">La web ya está <b>publicada</b> en <b>azul-autos.com</b> y Google la está incorporando a sus búsquedas. El panel, los informes y esta guía no aparecen en Google.</div>
 <div class="box tip">A cada agencia le pasás <b>el mismo enlace del panel</b>. El sistema reconoce el correo y le muestra solo su agencia.</div>
 
-<h2 style="margin-top:22px"><span class="num">2</span>Entrar al panel por primera vez</h2>
+<h2 style="margin-top:22px"><span class="num">2b</span>Entrar al panel todos los días</h2>
 <p class="lead">No hay contraseñas. Entrás con un enlace que llega a tu correo.</p>
 <ol class="steps">
-<li>Buscá en tu correo el mail de <b>invitación</b> de Azul Autos (si no está, mirá en <b>Spam</b> o <b>Promociones</b>).</li>
-<li>Tocá el enlace del mail. Con eso tu cuenta queda activada.</li>
-<li>Abrí el enlace del <b>panel</b>.</li>
+<li>Abrí el enlace del <b>panel</b> (ya aceptaste la invitación en el paso 2).</li>
 <li>Escribí tu correo y tocá <span class="btn">Enviarme el enlace</span>.</li>
-<li>Abrí el mail nuevo que te llega y tocá el enlace: ya estás adentro.</li>
+<li>Te llega un mail de <b>Supabase Auth</b> con asunto <b>«Your Magic Link»</b> (en inglés). Tocá el enlace <b>«Log In»</b>: ya estás adentro.</li>
 </ol>
 <div class="box ok">Abrí el enlace <b>en el mismo celular o compu</b> donde lo pediste. La sesión queda guardada: la próxima vez entrás directo.</div>
 <div class="box warn">El enlace sirve una sola vez y vence en un rato. Si dice que expiró, pedí uno nuevo.</div>
 <div class="foot"><span>Guía del administrador · Azul Autos</span><span>3</span></div>
 </section>
 
+<section class="pg">
+<div class="head"><div class="logo">azul<span>autos.</span></div><div class="n">PASO 2 · MUY IMPORTANTE</div></div>
+<h2><span class="num">2</span>Aceptar la invitación de administrador</h2>
+<p class="lead">Antes de poder entrar, tenés que <b>aceptar</b> ser administrador. Se hace <b>una sola vez</b>, desde el correo que te mandamos.</p>
+<h3>¿A dónde llega?</h3>
+<p>Al correo que nos diste (por ejemplo <b>ayestarancris@gmail.com</b>). Puede caer en <b>Recibidos</b>, <b>Promociones</b>, <b>Notificaciones</b> o <b>Spam</b>. Buscá en Gmail la palabra <b>invited</b> o <b>Supabase</b>.</p>
+<h3>Así se ve el correo (viene en inglés, es normal)</h3>
+<div class="mail"><div class="mh"><b>De:</b> Supabase Auth &lt;noreply@mail.app.supabase.io&gt;<br><b>Asunto:</b> You have been invited</div>
+<div class="mb"><b>You have been invited</b><br><br>You have been invited to create a user on https://azul-autos.com/app/panel.html. Follow this link to accept the invite:<br><br><a>Accept the invite</a></div></div>
+<p style="font-size:12px;color:#5b667a">Traducción: «Te invitaron a crear un usuario en Azul Autos. Seguí este enlace para aceptar la invitación: <b>Aceptar la invitación</b>». Supabase es el sistema seguro que usa Azul Autos para los ingresos.</p>
+<ol class="steps">
+<li>Abrí el correo <b>«You have been invited»</b>.</li>
+<li>Tocá el enlace azul <b>«Accept the invite»</b> (Aceptar la invitación).</li>
+<li>Se abre el <b>panel de Azul Autos</b> y ya quedás adentro, con la pestaña <span class="tab">Admin</span> a la vista.</li>
+<li>Guardá esa página en <b>favoritos</b> o «Agregar a pantalla de inicio» en el celular.</li>
+<li>¡Listo! Ya sos administrador. No hace falta crear contraseña.</li>
+</ol>
+<div class="box warn"><b>Atención:</b> el enlace de invitación sirve <b>una sola vez</b> y vence en <b>24 horas</b>. Si lo abriste tarde o dice «expired / invalid», no pasa nada: entrá directo al panel y pedí el enlace con tu correo (paso 2b). Si tampoco funciona, pedile a Natalia que te reenvíe la invitación.</div>
+<div class="box tip">Si no ves la pestaña <b>Admin</b>, avisá: significa que tu correo todavía no tiene permiso de administrador.</div>
+<div class="foot"><span>Guía del administrador · Azul Autos</span><span>4</span></div>
+</section>
 <section class="pg">
 <div class="head"><div class="logo">azul<span>autos.</span></div><div class="n">PASOS 3 Y 4</div></div>
 <h2><span class="num">3</span>Recorrido por el panel</h2>
@@ -132,7 +151,7 @@ tr:nth-child(even) td{background:#f6f8fc}
 <li>Cuando esté lista, en la lista de <span class="tab">Admin</span> cambiá el estado a <span class="st s1">Activa</span>. Recién ahí sus autos se ven en la web.</li>
 </ol>
 <div class="box warn">La dirección web no se puede repetir y conviene no cambiarla después: es el enlace que la agencia comparte.</div>
-<div class="foot"><span>Guía del administrador · Azul Autos</span><span>4</span></div>
+<div class="foot"><span>Guía del administrador · Azul Autos</span><span>5</span></div>
 </section>
 
 <section class="pg">
@@ -155,7 +174,7 @@ tr:nth-child(even) td{background:#f6f8fc}
 2. Desde ahora entrás acá: azul-autos.com/app/panel.html<br>
 3. Ponés tu correo, te llega un enlace y entrás. Sin contraseña.<br>
 4. En «+ Cargar auto» subís fotos y datos. Cualquier duda, escribime.</div>
-<div class="foot"><span>Guía del administrador · Azul Autos</span><span>5</span></div>
+<div class="foot"><span>Guía del administrador · Azul Autos</span><span>6</span></div>
 </section>
 
 <section class="pg">
@@ -182,7 +201,7 @@ tr:nth-child(even) td{background:#f6f8fc}
 <div class="card">✘ Nada de fotos con textos, marcos o capturas de pantalla.</div>
 </div>
 <div class="box ok">Las fotos se achican solas y se les borra la ubicación del celular. No hace falta editarlas.</div>
-<div class="foot"><span>Guía del administrador · Azul Autos</span><span>6</span></div>
+<div class="foot"><span>Guía del administrador · Azul Autos</span><span>7</span></div>
 </section>
 
 <section class="pg">
@@ -209,7 +228,7 @@ tr:nth-child(even) td{background:#f6f8fc}
 <li>Tocá <span class="btn">Guardar cambios</span>.</li>
 </ol>
 <div class="box warn">Revisá el WhatsApp dos veces: es a donde llegan todas las consultas de la gente.</div>
-<div class="foot"><span>Guía del administrador · Azul Autos</span><span>7</span></div>
+<div class="foot"><span>Guía del administrador · Azul Autos</span><span>8</span></div>
 </section>
 
 <section class="pg">
@@ -230,7 +249,7 @@ tr:nth-child(even) td{background:#f6f8fc}
 <li>El <b>día 1 de cada mes</b> el informe se manda solo por correo.</li>
 </ul>
 <div class="box tip">El informe es la mejor herramienta para <b>retener a las agencias</b>: mostrales cuántas consultas les trajimos.</div>
-<div class="foot"><span>Guía del administrador · Azul Autos</span><span>8</span></div>
+<div class="foot"><span>Guía del administrador · Azul Autos</span><span>9</span></div>
 </section>
 
 <section class="pg">
@@ -250,6 +269,22 @@ tr:nth-child(even) td{background:#f6f8fc}
 <tr><td>El botón de WhatsApp no abre</td><td>Revisá el número en Mi agencia: con 54, sin + ni espacios.</td></tr>
 <tr><td>Algo no funciona</td><td>Sacá captura de pantalla y mandala a Natalia.</td></tr></table>
 <div class="box ok" style="margin-top:16px"><b>Soporte:</b> Natalia · Tuimagen Studio · WhatsApp +54 9 2281 46-1982 · tuimagenstudio@gmail.com</div>
-<div class="foot"><span>Guía del administrador · Azul Autos</span><span>9</span></div>
+<div class="foot"><span>Guía del administrador · Azul Autos</span><span>10</span></div>
+</section>
+<section class="pg">
+<div class="head"><div class="logo">azul<span>autos.</span></div><div class="n">PASO 13</div></div>
+<h2><span class="num">13</span>Kit de marca</h2>
+<p class="lead">Usá siempre estas imágenes. Se descargan desde <b>azul-autos.com/marca/</b> + el nombre del archivo.</p>
+<div class="kit">
+<figure><img src="../marca/logo-oscuro.png"><figcaption><b>logo-oscuro.png</b> · sobre fondos oscuros</figcaption></figure>
+<figure><img src="../marca/logo-claro.png"><figcaption><b>logo-claro.png</b> · sobre fondos blancos · también <b>logo-transparente.png</b></figcaption></figure>
+<figure><img src="../marca/perfil.png" style="width:60%;margin:auto;border-radius:50%"><figcaption><b>perfil.png</b> · foto de perfil de Instagram, Facebook y WhatsApp</figcaption></figure>
+<figure><img src="../marca/whatsapp-tarjeta.png"><figcaption><b>Tarjeta al compartir</b> · aparece sola cuando mandás azul-autos.com por WhatsApp</figcaption></figure>
+<figure><img src="../marca/banner-facebook.png"><figcaption><b>banner-facebook.png</b> · portada de Facebook (1640×624)</figcaption></figure>
+<figure><img src="../marca/banner-x.png"><figcaption><b>banner-x.png</b> · X/Twitter · también <b>banner-linkedin.png</b> y <b>banner-youtube.png</b></figcaption></figure>
+</div>
+<div class="grid" style="margin-top:10px"><div class="card"><b>Colores</b><br><span style="display:inline-block;width:14px;height:14px;background:#4f86ff;border-radius:3px"></span> Azul marca #4F86FF<br><span style="display:inline-block;width:14px;height:14px;background:#184fe5;border-radius:3px"></span> Azul botones #184FE5<br><span style="display:inline-block;width:14px;height:14px;background:#101f3d;border-radius:3px"></span> Noche #101F3D</div>
+<div class="card"><b>Reglas</b><br>• «azul» blanco u oscuro, «autos.» siempre azul.<br>• No estirar, rotar ni cambiar colores.<br>• Historias: usar <b>historia.png</b> (1080×1920).</div></div>
+<div class="foot"><span>Guía del administrador · Azul Autos</span><span>11</span></div>
 </section>
 </body></html>
