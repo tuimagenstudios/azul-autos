@@ -64,6 +64,7 @@ sb.auth.onAuthStateChange((ev) => { if (ev === 'SIGNED_IN' && !user) start(); })
 // ===== Inicio =====
 async function loadStats(){
   $('#agName').textContent = current.name.toUpperCase();
+  $('#reportLink').href = 'informe.html?agencia=' + encodeURIComponent(current.id);
   const month = new Date(); month.setDate(1); month.setHours(0,0,0,0);
   const [{ data: st }, { count }] = await Promise.all([
     sb.from('agency_stats').select('*').eq('agency_id', current.id).gte('month', month.toISOString()),

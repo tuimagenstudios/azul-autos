@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data: blob: https://ozxabrgegpeulwwqfzsy.supabase.co; connect-src https://ozxabrgegpeulwwqfzsy.supabase.co wss://ozxabrgegpeulwwqfzsy.supabase.co; form-action 'none'; base-uri 'none'; object-src 'none'">
-<title>Panel de agencia — Azul Autos</title><link rel="stylesheet" href="panel.css?v=1"></head><body>
+<title>Panel de agencia — Azul Autos</title><link rel="stylesheet" href="panel.css?v=2"></head><body>
 
 <header class="top"><a class="logo" href="../index.html">azul<span>autos.</span></a><span class="who" id="who"></span><button id="logout" class="ghost" hidden>Salir</button></header>
 
@@ -35,6 +35,7 @@
 <div class="eyebrow" id="agName"></div><h1>Así va tu agencia este mes</h1>
 <div class="stats"><div class="stat"><b id="stPub">–</b><span>Autos publicados</span></div><div class="stat"><b id="stViews">–</b><span>Visitas a tus autos</span></div><div class="stat"><b id="stWa">–</b><span>Toques en WhatsApp</span></div><div class="stat"><b id="stAgency">–</b><span>Visitas a tu página</span></div></div>
 <div class="card" id="alerts"></div>
+<div class="card report-card"><div><h2>Informe mensual</h2><p class="muted">Visitas, consultas y recomendaciones de tu agencia, listo para descargar en PDF.</p></div><a class="btn" id="reportLink" href="informe.html">Ver informe del mes →</a></div>
 </section>
 
 <section data-panel="autos" hidden>
@@ -105,5 +106,5 @@
 <div id="toast" class="toast" role="status" hidden></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="config.js?v=1"></script>
-<script src="panel.js?v=2"></script>
+<script src="panel.js?v=3"></script>
 </body></html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data: https://ozxabrgegpeulwwqfzsy.supabase.co; connect-src https://ozxabrgegpeulwwqfzsy.supabase.co; form-action 'none'; base-uri 'none'; object-src 'none'">
+<title>Informe mensual — Azul Autos</title><link rel="stylesheet" href="informe.css?v=1"><link rel="stylesheet" href="informe-real.css?v=1"></head><body>
+<div class="toolbar"><a href="panel.html">← Volver al panel</a><label class="msel">Mes <select id="month"></select></label><button id="print" type="button">Descargar PDF</button></div>
+<p id="state" class="state-msg">Cargando informe…</p>
+<article class="report" id="report" hidden>
+<header class="r-head"><div class="brand">azul<span>autos.</span></div><div class="period"><b>Informe mensual</b><br><span id="periodTxt"></span></div></header>
+<section class="r-hero"><span class="mark" id="agMark"></span><div><div class="eyebrow">TU AGENCIA EN AZUL AUTOS</div><h1 id="agName"></h1><p id="heroTxt"></p></div></section>
+<section class="kpis">
+<div class="kpi"><b id="kViews">0</b><span>Visitas a tus autos</span><em id="dViews"></em></div>
+<div class="kpi accent"><b id="kWa">0</b><span>Consultas por WhatsApp</span><em id="dWa"></em></div>
+<div class="kpi"><b id="kSold">0</b><span>Autos marcados vendidos</span><em id="dSold"></em></div>
+<div class="kpi"><b id="kAg">0</b><span>Visitas a tu página de agencia</span><em id="dAg"></em></div>
+</section>
+<section class="block"><h2>Consultas por WhatsApp, semana a semana</h2><div class="bars" id="bars"></div><p class="note" id="barsNote"></p></section>
+<section class="block"><h2>Tus autos este mes</h2><div id="carsTable"></div><p class="note"><b>Conversión</b> = de cada 100 personas que vieron el auto, cuántas te escribieron.</p></section>
+<section class="block"><h2 id="tipsTitle">Recomendaciones</h2><div class="tips" id="tips"></div></section>
+<footer class="r-foot"><div><b>azul autos.</b> · Las agencias de Azul en un solo lugar<br>Datos reales registrados por Azul Autos. Los números en vivo están en tu panel.</div><a class="cta" href="panel.html">Ver mi panel →</a></footer>
+</article>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js?v=1"></script><script src="informe-real.js?v=1"></script>
+</body></html>
