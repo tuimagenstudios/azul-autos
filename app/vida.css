@@ -87,3 +87,13 @@
 @media(max-width:600px){.why{padding:64px 16px;margin-top:56px}.why-card{padding:24px}.join2{margin:56px 0 48px;border-radius:22px}.j-btns .btn{flex:1;text-align:center}.join2-art{height:200px}.float{padding:10px 14px}.float b{font-size:24px}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.float,.join2{animation:none}}
 html,body{overflow-x:clip}.bleed{margin-left:calc(50% - 50dvw);margin-right:calc(50% - 50dvw)}@supports not (overflow:clip){html,body{overflow-x:hidden}}
+/* Tarjetas "Por qué" lado a lado y más compactas */
+.why-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px}
+.why-card{padding:22px}
+.why-ic{width:46px;height:46px;border-radius:13px;margin-bottom:14px}
+.why-ic svg{width:22px;height:22px}
+.ghost{font-size:64px;top:8px;right:14px}
+.why-card h3{font-size:18px;margin:4px 0 6px}
+.why-card p{font-size:14px;line-height:1.45}
+@media(max-width:640px){.why-grid{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:4px 16px 10px;scrollbar-width:none}.why-grid::-webkit-scrollbar{display:none}.why-card{flex:0 0 78%;scroll-snap-align:start}}
+
