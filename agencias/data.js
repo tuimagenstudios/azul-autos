@@ -1,7 +1,7 @@
 // Datos de ejemplo. Agencias y autos ficticios: no son avisos reales.
 const AGENCIES = [
   {id:'centro', name:'Facundo Gomez Automotores', initials:'FG', logo:'images/agencias/fg-logo.webp', color:'#13234d', address:'Lavalle 539, Azul', hours:'Consultá horarios por WhatsApp', since:null, verified:true, wa:'542281579090', ig:'automotoresfg', about:'Tu próxima oportunidad está acá. Venta, compra y consignación de autos, con gestoría del automotor.', perks:['Venta y compra','Consignación','Gestoría del automotor']},
-  {id:'ruta3', name:'Ruta 3 Automotores (demo)', initials:'R3', color:'#0f8a5f', address:'Ruta 3 km de ejemplo, Azul', hours:'Lun a sáb 8–18', since:2015, verified:true, about:'Especialistas en pick-ups y utilitarios para el campo.', perks:['Pick-ups y 4x4','Toma de usados','Gestoría propia']},
+  {id:'ruta3', name:'Pampa Pick-ups (demo)', initials:'PP', color:'#0f8a5f', address:'Calle de ejemplo 900, Azul', hours:'Lun a sáb 8–18', since:2015, verified:true, about:'Especialistas en pick-ups y utilitarios para el campo.', perks:['Pick-ups y 4x4','Toma de usados','Gestoría propia']},
   {id:'norte', name:'Norte Usados (demo)', initials:'NU', color:'#c2410c', address:'Calle de ejemplo 450, Azul', hours:'Lun a vie 9–19', since:2018, verified:true, about:'Autos chicos y económicos, ideales para el primer auto.', perks:['Primer auto','Financiación','Revisión en taller']},
   {id:'plaza', name:'Plaza Motors (demo)', initials:'PM', color:'#7c3aed', address:'Frente a la plaza de ejemplo, Azul', hours:'Lun a sáb 9–20', since:2012, verified:true, about:'SUV y autos con pocos kilómetros. Unidades revisadas antes de publicarse.', perks:['SUV','0 a 50.000 km','Garantía 6 meses']}
 ];
