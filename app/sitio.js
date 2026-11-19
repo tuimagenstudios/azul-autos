@@ -37,18 +37,29 @@ async function load(){
 }
 
 // ===== Tarjetas =====
-function card(c){
+// ===== Tipo de vehículo (por modelo) y favoritos =====
+const PICKUP = /hilux|ranger|amarok|s10|s-10|frontier|toro|strada|saveiro|montana|alaskan|maverick|oroch|l200|ram|tacoma|f-?150|d-max|navara|ranchero/i;
+const SUV = /duster|renegade|compass|kicks|hr-?v|cr-?v|tracker|ecosport|territory|bronco|t-?cross|taos|tiguan|nivus|2008|3008|5008|c4 cactus|c3 aircross|captur|koleos|sportage|seltzer|creta|tucson|rav4|corolla cross|sw4|pulse|fastback|commander|x-?trail|qashqai|outlander|jimny|vitara|q3|q5|x1|x3|gla|glc|wrangler|grand cherokee|kuga|equinox|trailblazer|cherokee|stepway/i;
+const type = c => PICKUP.test(c.model) ? 'pickup' : SUV.test(c.model + ' ' + (c.version || '')) ? 'suv' : 'auto';
+window.AZUL_TYPE = type;
+let FAVS = []; try { FAVS = JSON.parse(localStorage.getItem('azul-favs') || '[]'); } catch {}
+const isFav = id => FAVS.includes(id);
+function toggleFav(id){ FAVS = isFav(id) ? FAVS.filter(x => x !== id) : [...FAVS, id].slice(-30); try { localStorage.setItem('azul-favs', JSON.stringify(FAVS)); } catch {} document.querySelectorAll(`[data-fav="${id}"]`).forEach(b => b.setAttribute('aria-pressed', String(isFav(id)))); }
+
+function card(c, opts = {}){
   const a = ag(c.agency), ph = firstPhoto(c);
-  return `<article class="card"><button class="card-open" data-car="${c.id}"><div class="photo"><img src="${esc(pub(ph && ph.path))}" alt="${esc(c.name)}" loading="lazy">${c.featured ? '<span class="featured-tag">Destacado</span>' : ''}<span class="tag">${c.year} · ${Number(c.km).toLocaleString('es-AR')} km</span></div><div class="body"><h3>${esc(c.name)}</h3><div class="specs">${[c.version, c.gearbox, c.fuel].filter(Boolean).map(esc).join(' · ')}</div><div class="price">${esc(money(c))}</div><div class="pills">${c.vtv ? '<span class="pill">VTV al día</span>' : ''}${c.owners === 1 ? '<span class="pill">Único dueño</span>' : ''}${c.finance ? '<span class="pill">Financiación</span>' : ''}${c.swap ? '<span class="pill">Permuta</span>' : ''}</div></div></button><div class="seller">${mark(a)}<span><b>${esc(a.name)}</b><br><span class="badge-ok">✓ Agencia verificada</span></span></div></article>`;
+  const ribbon = opts.ribbon || (c.featured ? 'DESTACADO' : '');
+  return `<article class="card car2${ribbon ? ' is-feat' : ''}"><button class="card-open" data-car="${c.id}"><div class="photo"><img src="${esc(pub(ph && ph.path))}" alt="${esc(c.name)}" loading="lazy">${ribbon ? `<span class="ribbon">${esc(ribbon)}</span>` : ''}</div><div class="body"><h3>${esc(c.name)}${c.version ? ` <small>- ${esc(c.version)}</small>` : ''}</h3><div class="specs">${c.year} · ${Number(c.km).toLocaleString('es-AR')} km · ${esc(c.gearbox)}</div><div class="price">${esc(money(c))}</div><div class="pills">${c.finance ? '<span class="pill">Financiación</span>' : ''}${c.swap ? '<span class="pill">Permuta</span>' : ''}${c.vtv ? '<span class="pill">VTV al día</span>' : ''}</div><div class="loc">📍 Azul, Buenos Aires</div></div></button><button type="button" class="fav" data-fav="${c.id}" aria-pressed="${isFav(c.id)}" aria-label="Guardar en favoritos">♥</button><a class="ag-badge" href="#agencia/${esc(a.slug)}" title="${esc(a.name)}" aria-label="Ver ${esc(a.name)}">${mark(a)}</a></article>`;
 }
+window.AZUL_CARD = card;
 function list(rows){ return rows.length ? rows.map(card).join('') : '<div class="empty"><h3>No hay autos con esos filtros</h3><p>Probá otra marca o quitá el precio máximo.</p></div>'; }
 
 function render(){
   const q = $('#query').value.trim().toLowerCase(), cur = $('#currency').value, max = Number($('#max').value), b = $('#fBrand').value;
   let rows = CARS.filter(c => (!q || (c.name + ' ' + (c.version || '')).toLowerCase().includes(q)) && (!cur || c.currency === cur) && (!max || (c.price && c.price <= max))
-    && (!b || c.brand === b) && (!$('#fFuel').value || c.fuel === $('#fFuel').value) && (!$('#fBox').value || c.gearbox === $('#fBox').value) && (!$('#fFinance').checked || c.finance));
+    && (!b || c.brand === b) && (!$('#fType').value || type(c) === $('#fType').value) && (!$('#fFuel').value || c.fuel === $('#fFuel').value) && (!$('#fBox').value || c.gearbox === $('#fBox').value) && (!$('#fFinance').checked || c.finance) && (!$('#fFav').checked || isFav(c.id)));
   const s = $('#sort').value;
-  rows.sort(s === 'year' ? (x, y) => y.year - x.year : s === 'km' ? (x, y) => x.km - y.km : (x, y) => (y.featured - x.featured) || (new Date(y.created_at) - new Date(x.created_at)));
+  rows.sort(s === 'year' ? (x, y) => y.year - x.year : s === 'km' ? (x, y) => x.km - y.km : s === 'pmin' ? (x, y) => (x.price || 9e15) - (y.price || 9e15) : (x, y) => (y.featured - x.featured) || (new Date(y.created_at) - new Date(x.created_at)));
   const n = rows.length, g = new Set(rows.map(r => r.agency)).size;
   $('#count').textContent = n + (n === 1 ? ' auto' : ' autos') + ' de ' + g + (g === 1 ? ' agencia' : ' agencias') + ' · Azul, Buenos Aires';
   $('#cars').innerHTML = list(rows);
@@ -66,8 +77,18 @@ function strip(){
     + `<a class="story join-story" href="#sumate"><span class="ring"><span class="ini plus">+</span></span><b>Tu agencia</b><small>Sumate</small></a>`;
   const brands = [...new Set(CARS.map(c => c.brand))].sort((x, y) => x.localeCompare(y, 'es'));
   $('#fBrand').innerHTML = '<option value="">Todas</option>' + brands.map(x => `<option>${esc(x)}</option>`).join('');
-  $('#heroCount').textContent = '↗ ' + CARS.length + (CARS.length === 1 ? ' auto · ' : ' autos · ') + AG.length + (AG.length === 1 ? ' agencia' : ' agencias');
+  $('#heroCount').textContent = CARS.length + (CARS.length === 1 ? ' auto publicado · ' : ' autos publicados · ') + AG.length + (AG.length === 1 ? ' agencia verificada' : ' agencias verificadas');
+  const hb = $('#hBrand'); if (hb) hb.innerHTML = '<option value="">Todas las marcas</option>' + brands.map(x => `<option>${esc(x)}</option>`).join('');
+  window.dispatchEvent(new CustomEvent('azul:data', { detail: { AG, CARS } }));
 }
+// Filtros que llegan desde la portada (buscador, tarjetas, marcas)
+window.addEventListener('azul:filter', e => {
+  const f = e.detail || {};
+  if ('brand' in f) { if (f.brand && ![...$('#fBrand').options].some(o => o.value === f.brand)) $('#fBrand').insertAdjacentHTML('beforeend', `<option>${esc(f.brand)}</option>`); $('#fBrand').value = f.brand || ''; }
+  if ('type' in f) $('#fType').value = f.type || '';
+  if ('max' in f) { $('#max').value = f.max || ''; if (f.max) $('#currency').value = 'ARS'; }
+  render(); $('#catalogo').scrollIntoView({ behavior: 'smooth' });
+});
 
 // ===== Página de agencia =====
 function waLink(num, text){ return 'https://wa.me/' + encodeURIComponent(num) + '?text=' + encodeURIComponent(text); }
@@ -105,12 +126,13 @@ function detail(id){
 }
 
 document.addEventListener('click', e => {
+  const fv = e.target.closest('[data-fav]'); if (fv) { e.preventDefault(); toggleFav(fv.dataset.fav); if ($('#fFav').checked) render(); return; }
   const open = e.target.closest('[data-car]'); if (open) { detail(open.dataset.car); return; }
   const ph = e.target.closest('[data-ph]'); if (ph) { $('#mainPh').src = ph.dataset.ph; return; }
   const wa = e.target.closest('[data-wa]'); if (wa) { track('whatsapp', wa.dataset.wa, wa.dataset.waCar); }
   if (e.target.closest('[data-close]')) $('#detail').close();
 });
-['#query','#currency','#max','#fBrand','#fFuel','#fBox','#sort','#fFinance'].forEach(s => $(s).addEventListener('input', render));
+['#query','#currency','#max','#fBrand','#fType','#fFuel','#fBox','#sort','#fFinance','#fFav'].forEach(s => $(s).addEventListener('input', render));
 $('#search').addEventListener('submit', e => { e.preventDefault(); render(); });
 window.addEventListener('hashchange', route);
 load();

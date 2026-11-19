@@ -1,15 +1,46 @@
 <!doctype html>
 <html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data: https://ozxabrgegpeulwwqfzsy.supabase.co; connect-src https://ozxabrgegpeulwwqfzsy.supabase.co; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data: https://ozxabrgegpeulwwqfzsy.supabase.co; media-src 'self'; connect-src https://ozxabrgegpeulwwqfzsy.supabase.co; form-action 'none'; base-uri 'none'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Azul Autos — Las agencias de Azul en un solo lugar</title><link rel="stylesheet" href="styles.css?v=1"><link rel="stylesheet" href="agencias.css?v=1"><link rel="stylesheet" href="vida.css?v=2"><link rel="stylesheet" href="sitio.css?v=2"></head><body>
-<header><a class="logo" href="#">azul<span>autos.</span></a><nav><a href="#agencias" class="optional">Agencias</a><a href="#catalogo" class="optional">Autos</a><a href="#sumate" class="optional">Soy agencia</a><a class="btn" href="#catalogo">Ver autos ↓</a></nav><div class="mobile-links"><a href="#catalogo">Autos ↓</a><a href="#agencias">Agencias</a><a href="#sumate">Soy agencia</a></div></header>
+<title>Azul Autos — Las agencias de Azul en un solo lugar</title><link rel="stylesheet" href="styles.css?v=1"><link rel="stylesheet" href="agencias.css?v=1"><link rel="stylesheet" href="vida.css?v=2"><link rel="stylesheet" href="sitio.css?v=3"><link rel="stylesheet" href="portada.css?v=1"></head><body class="home-page">
+<header class="topbar" id="topbar"><a class="logo" href="#">azul<span>autos.</span></a><nav><a href="#agencias" class="optional">Agencias</a><a href="#catalogo" class="optional">Autos</a><a href="#sumate" class="optional">Soy agencia</a><a class="btn" href="panel.html">Ingresar</a></nav></header>
 <div id="home">
-<section class="hero"><div class="hero-inner"><div><div class="eyebrow">AZUL, BUENOS AIRES · AGENCIAS VERIFICADAS</div><h1>Todas las agencias de Azul,<br><span>en un solo lugar.</span></h1><p>Compará los autos de las agencias del pueblo sin recorrer una por una. Cada auto lo respalda un negocio con local y nombre.</p><div class="hero-benefits"><span>✓ Solo agencias verificadas</span><span>✓ Contacto directo por WhatsApp</span><span>✓ Sin intermediarios</span></div></div><div class="hero-art"><img src="hero.jpg" alt="Pick-up blanca"><div class="local" id="heroCount">Cargando…</div></div></div></section>
+
+<section class="lux-hero" aria-label="Portada">
+  <div class="lux-slides" aria-hidden="true">
+    <img src="portada/1.jpg" alt=""><img src="portada/2.jpg" alt=""><img src="portada/3.jpg" alt=""><img src="portada/4.jpg" alt="">
+  </div>
+  <div class="lux-shade" aria-hidden="true"></div><div class="lux-sweep" aria-hidden="true"></div><div class="lux-floor" aria-hidden="true"></div>
+  <div class="lux-content">
+    <div class="lux-eyebrow">AZUL, BUENOS AIRES · AGENCIAS VERIFICADAS</div>
+    <h1>Tu próximo auto, <span>en Azul.</span></h1>
+    <p>Todas las agencias del pueblo en un solo lugar. Compará y hablá directo con quien vende.</p>
+    <form class="lux-search" id="heroSearch">
+      <label><span>Marca</span><select id="hBrand"><option value="">Todas las marcas</option></select></label>
+      <label><span>Tipo</span><select id="hType"><option value="">Todos</option><option value="auto">Autos</option><option value="suv">SUV</option><option value="pickup">Pickups</option></select></label>
+      <label><span>Precio máximo</span><select id="hMax"><option value="">Sin límite</option><option value="10000000">$ 10.000.000</option><option value="15000000">$ 15.000.000</option><option value="20000000">$ 20.000.000</option><option value="30000000">$ 30.000.000</option><option value="45000000">$ 45.000.000</option></select></label>
+      <button class="btn lux-go">🔍 Buscar autos</button>
+    </form>
+    <div class="lux-count" id="heroCount">Cargando…</div>
+  </div>
+  <a class="lux-down" href="#agencias" aria-label="Bajar">↓</a>
+</section>
+
 <section class="stories-wrap" id="agencias" aria-label="Agencias de Azul Autos"><div class="stories-head"><span>AGENCIAS DE AZUL · TOCÁ UNA PARA VER SUS AUTOS</span></div><div class="stories" id="stories"></div></section>
+
+<main>
+<section class="sec-block" id="masBuscado"><div class="eyebrow-v">BÚSQUEDAS POPULARES</div><h2>Lo que más se busca</h2><div class="pop-grid" id="popGrid"></div></section>
+
+<section class="sec-block" id="destacadosSec" hidden><div class="sec-head-row"><div><div class="eyebrow-v">SELECCIÓN DE LAS AGENCIAS</div><h2>Vehículos destacados</h2></div><div class="car-nav"><button type="button" data-scroll="destacados" data-dir="-1" aria-label="Anteriores">←</button><button type="button" data-scroll="destacados" data-dir="1" aria-label="Siguientes">→</button></div></div><div class="car-rail" id="destacados"></div></section>
+
+<section class="sec-block" id="vistosSec" hidden><div class="sec-head-row"><div><div class="eyebrow-v">TENDENCIA EN AZUL</div><h2>Los más vistos</h2></div><div class="car-nav"><button type="button" data-scroll="vistos" data-dir="-1" aria-label="Anteriores">←</button><button type="button" data-scroll="vistos" data-dir="1" aria-label="Siguientes">→</button></div></div><div class="car-rail" id="vistos"></div></section>
+</main>
+
+<section class="brands-band bleed" aria-label="Marcas que se venden en Argentina"><div class="eyebrow-v center">MARCAS QUE ENCONTRÁS EN AZUL AUTOS</div><div class="marquee"><div class="marquee-track" id="marquee"></div></div></section>
+
 <main>
 <section id="catalogo"><div class="section-head"><div><div class="eyebrow muted">CATÁLOGO DE TODAS LAS AGENCIAS</div><h2>Encontrá tu próximo auto</h2><p class="muted" id="count">Cargando autos…</p></div></div>
-<form class="filters" id="search"><label class="f-wide">¿Qué auto buscás?<input id="query" maxlength="80" placeholder="Modelo, ej.: Corolla"></label><label>Marca<select id="fBrand"><option value="">Todas</option></select></label><label>Moneda<select id="currency"><option value="">Todas</option><option>ARS</option><option>USD</option></select></label><label>Precio máximo<input inputmode="numeric" type="number" id="max" min="0" placeholder="Sin límite"></label><label>Combustible<select id="fFuel"><option value="">Todos</option><option>Nafta</option><option>Diésel</option><option>Nafta / GNC</option><option>Híbrido</option><option>Eléctrico</option></select></label><label>Caja<select id="fBox"><option value="">Todas</option><option>Manual</option><option>Automática</option></select></label><label>Ordenar<select id="sort"><option value="new">Más recientes</option><option value="year">Año: más nuevos</option><option value="km">Menor kilometraje</option></select></label><label class="chk-label"><input type="checkbox" id="fFinance" class="chk">Con financiación</label></form>
+<form class="filters" id="search"><label class="f-wide">¿Qué auto buscás?<input id="query" maxlength="80" placeholder="Modelo, ej.: Corolla"></label><label>Marca<select id="fBrand"><option value="">Todas</option></select></label><label>Tipo<select id="fType"><option value="">Todos</option><option value="auto">Autos</option><option value="suv">SUV</option><option value="pickup">Pickups</option></select></label><label>Precio máximo<input inputmode="numeric" type="number" id="max" min="0" placeholder="Sin límite"></label><label>Moneda<select id="currency"><option value="">Todas</option><option>ARS</option><option>USD</option></select></label><label>Combustible<select id="fFuel"><option value="">Todos</option><option>Nafta</option><option>Diésel</option><option>Nafta / GNC</option><option>Híbrido</option><option>Eléctrico</option></select></label><label>Caja<select id="fBox"><option value="">Todas</option><option>Manual</option><option>Automática</option></select></label><label>Ordenar<select id="sort"><option value="new">Más recientes</option><option value="year">Año: más nuevos</option><option value="km">Menor kilometraje</option><option value="pmin">Menor precio</option></select></label><label class="chk-label"><input type="checkbox" id="fFinance" class="chk">Con financiación</label><label class="chk-label"><input type="checkbox" id="fFav" class="chk">♡ Solo mis favoritos</label></form>
 <div class="brand-agencies" id="brandAgencies" hidden></div>
 <div class="grid" id="cars"></div></section>
 <section class="why bleed" aria-labelledby="whyTitle"><div class="why-inner">
@@ -26,7 +57,7 @@
 <div class="join2-art" aria-hidden="true"><div class="float f1"><b>📈</b><span>visitas y consultas</span></div><div class="float f2">✓ Agencia verificada</div><div class="float f3"><i></i><i></i><i></i><i></i><span>Informe mensual</span></div><div class="orb"></div></div></section>
 </main></div>
 <main id="agencyPage" hidden></main>
-<footer class="foot2"><div class="foot2-in"><div class="f-brand"><div class="logo">azul<span>autos.</span></div><p>Las agencias de Azul en un solo lugar. Buscá, compará y hablá directo con quien vende.</p></div><div class="f-col"><b>Explorar</b><a href="#catalogo">Autos</a><a href="#agencias">Agencias</a><a href="#sumate">Soy agencia</a></div><div class="f-col"><b>Agencias</b><a href="panel.html">Panel de agencia</a><a href="../agencias/propuesta-agencia.html">Propuesta</a></div></div><div class="f-bottom"><span>© 2026 Azul Autos · Azul, Buenos Aires</span><span>Fotos publicadas por cada agencia</span></div></footer>
+<footer class="foot2"><div class="foot2-in"><div class="f-brand"><div class="logo">azul<span>autos.</span></div><p>Las agencias de Azul en un solo lugar. Buscá, compará y hablá directo con quien vende.</p></div><div class="f-col"><b>Explorar</b><a href="#catalogo">Autos</a><a href="#agencias">Agencias</a><a href="#sumate">Soy agencia</a></div><div class="f-col"><b>Agencias</b><a href="panel.html">Panel de agencia</a><a href="../agencias/propuesta-agencia.html">Propuesta</a></div></div><div class="f-bottom"><span>© 2026 Azul Autos · Azul, Buenos Aires</span><a href="creditos-fotos.html">Créditos de fotos de portada</a></div></footer>
 <dialog id="detail" aria-labelledby="detailTitle"><button class="close" data-close aria-label="Cerrar ficha">✕</button><div id="detailBody"></div></dialog>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-<script src="config.js?v=1"></script><script src="sitio.js?v=2"></script><script src="vida.js?v=1"></script></body></html>
+<script src="config.js?v=1"></script><script src="portada.js?v=1"></script><script src="sitio.js?v=3"></script><script src="vida.js?v=1"></script></body></html>
