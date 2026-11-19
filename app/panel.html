@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data: blob: https://ozxabrgegpeulwwqfzsy.supabase.co; connect-src https://ozxabrgegpeulwwqfzsy.supabase.co wss://ozxabrgegpeulwwqfzsy.supabase.co; form-action 'none'; base-uri 'none'; object-src 'none'">
+<title>Panel de agencia — Azul Autos</title><link rel="stylesheet" href="panel.css?v=1"></head><body>
+
+<header class="top"><a class="logo" href="../index.html">azul<span>autos.</span></a><span class="who" id="who"></span><button id="logout" class="ghost" hidden>Salir</button></header>
+
+<!-- Ingreso -->
+<section id="login" class="card narrow" hidden>
+<div class="eyebrow">PANEL DE AGENCIAS</div>
+<h1>Ingresá a tu panel</h1>
+<p class="muted">Te mandamos un enlace a tu correo. Sin contraseñas.</p>
+<form id="loginForm"><label>Correo electrónico<input id="email" type="email" required autocomplete="email" maxlength="254" placeholder="nombre@ejemplo.com"></label>
+<button class="btn" id="loginBtn">Enviarme el enlace</button></form>
+<p id="loginMsg" class="msg" role="status"></p>
+<p class="small muted">¿Tu agencia todavía no está? Escribinos y la damos de alta.</p>
+</section>
+
+<!-- Sin agencia -->
+<section id="noAgency" class="card narrow" hidden><h1>Tu cuenta no tiene agencia asignada</h1><p class="muted">Pedile al equipo de Azul Autos que te sume a tu agencia.</p></section>
+
+<!-- App -->
+<div id="app" hidden>
+<nav class="tabs" id="tabs">
+<button data-tab="inicio" aria-current="true">Inicio</button>
+<button data-tab="autos">Mis autos</button>
+<button data-tab="cargar">+ Cargar auto</button>
+<button data-tab="agencia">Mi agencia</button>
+<button data-tab="admin" id="adminTab" hidden>Admin</button>
+</nav>
+<div class="agency-switch" id="agencySwitchWrap" hidden><label>Agencia<select id="agencySwitch"></select></label></div>
+<main class="wrap">
+
+<section data-panel="inicio">
+<div class="eyebrow" id="agName"></div><h1>Así va tu agencia este mes</h1>
+<div class="stats"><div class="stat"><b id="stPub">–</b><span>Autos publicados</span></div><div class="stat"><b id="stViews">–</b><span>Visitas a tus autos</span></div><div class="stat"><b id="stWa">–</b><span>Toques en WhatsApp</span></div><div class="stat"><b id="stAgency">–</b><span>Visitas a tu página</span></div></div>
+<div class="card" id="alerts"></div>
+</section>
+
+<section data-panel="autos" hidden>
+<div class="head"><div><h1>Mis autos</h1><p class="muted">Pausá, renová o marcá vendido. Los vendidos salen solos del catálogo.</p></div><button class="btn" data-go="cargar">+ Cargar auto</button></div>
+<div id="carList" class="car-list"></div>
+</section>
+
+<section data-panel="cargar" hidden>
+<h1 id="formTitle">Cargar un auto</h1>
+<form id="carForm" class="card">
+<input type="hidden" id="carId">
+<h2>1. Fotos <small class="muted">(mínimo 4, hasta 12)</small></h2>
+<label class="drop"><input type="file" id="photos" accept="image/jpeg,image/png,image/webp" capture="environment" multiple><span>📷 Tocá para sacar o elegir fotos</span></label>
+<p class="small muted">Frente, lateral, interior y tablero. Tapá la patente. Las achicamos solas y les sacamos la ubicación.</p>
+<div id="thumbs" class="thumbs"></div>
+<h2>2. Datos</h2>
+<div class="grid2">
+<label>Marca<input id="f_brand" required maxlength="30" list="brands"></label>
+<label>Modelo<input id="f_model" required maxlength="40"></label>
+<label>Versión<input id="f_version" maxlength="60"></label>
+<label>Año<input id="f_year" type="number" inputmode="numeric" min="1950" max="2030" required></label>
+<label>Kilómetros<input id="f_km" type="number" inputmode="numeric" min="0" max="2000000" required></label>
+<label>Combustible<select id="f_fuel"><option>Nafta</option><option>Diésel</option><option>Nafta / GNC</option><option>Híbrido</option><option>Eléctrico</option></select></label>
+<label>Caja<select id="f_gearbox"><option>Manual</option><option>Automática</option></select></label>
+<label>Dueños<select id="f_owners"><option value="">Sin dato</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+<label>Moneda<select id="f_currency"><option>ARS</option><option>USD</option></select></label>
+<label>Precio <small class="muted">(vacío = «Consultar»)</small><input id="f_price" type="number" inputmode="numeric" min="1"></label>
+<label class="full">Patente <small class="muted">· privada, solo la ve tu agencia y Azul Autos</small><input id="f_plate" maxlength="10" placeholder="AB 123 CD"></label>
+</div>
+<div class="checks"><label><input type="checkbox" id="f_vtv"> VTV al día</label><label><input type="checkbox" id="f_swap"> Acepta permuta</label><label><input type="checkbox" id="f_finance"> Financiación</label></div>
+<label>Descripción<textarea id="f_description" rows="3" maxlength="800" placeholder="Service al día, cubiertas nuevas…"></textarea></label>
+<datalist id="brands"><option>Chevrolet</option><option>Citroën</option><option>Fiat</option><option>Ford</option><option>Honda</option><option>Hyundai</option><option>Jeep</option><option>Nissan</option><option>Peugeot</option><option>Renault</option><option>Toyota</option><option>Volkswagen</option></datalist>
+<button class="btn full" id="saveCar">Publicar auto</button>
+<p id="carMsg" class="msg" role="status"></p>
+</form>
+</section>
+
+<section data-panel="agencia" hidden>
+<h1>Mi agencia</h1>
+<form id="agencyForm" class="card">
+<div class="logo-row"><img id="logoPrev" alt="" hidden><label class="btn ghost">Cambiar logo<input type="file" id="logoFile" accept="image/jpeg,image/png,image/webp" hidden></label></div>
+<div class="grid2">
+<label class="full">Nombre<input id="a_name" required maxlength="80"></label>
+<label>WhatsApp <small class="muted">(con 54, sin + ni espacios)</small><input id="a_whatsapp" inputmode="numeric" pattern="[0-9]{10,15}" maxlength="15"></label>
+<label>Instagram <small class="muted">(sin @)</small><input id="a_instagram" maxlength="30" pattern="[A-Za-z0-9._]{1,30}"></label>
+<label class="full">Dirección<input id="a_address" maxlength="120"></label>
+<label class="full">Horarios<input id="a_hours" maxlength="120"></label>
+<label class="full">Sobre la agencia<textarea id="a_about" rows="3" maxlength="400"></textarea></label>
+<label class="full">Trabaja con <small class="muted">(separado por comas)</small><input id="a_perks" maxlength="200"></label>
+</div>
+<button class="btn">Guardar cambios</button><p id="agencyMsg" class="msg" role="status"></p>
+</form>
+</section>
+
+<section data-panel="admin" hidden>
+<h1>Administración</h1>
+<div class="card"><h2>Agencias</h2><div id="agencyTable"></div></div>
+<form class="card" id="newAgency"><h2>Dar de alta una agencia</h2>
+<div class="grid2"><label>Nombre<input id="n_name" required maxlength="80"></label><label>Dirección web <small class="muted">(azul-autos.com/…)</small><input id="n_slug" required pattern="[a-z0-9-]{3,60}" maxlength="60" placeholder="nombre-agencia"></label></div>
+<button class="btn">Crear agencia</button><p id="newAgencyMsg" class="msg" role="status"></p></form>
+<form class="card" id="addMember"><h2>Sumar una persona a una agencia</h2>
+<p class="small muted">1) Invitala desde Supabase → Authentication → «Invite user» con su correo. 2) Elegí la agencia y escribí el mismo correo acá.</p>
+<div class="grid2"><label>Agencia<select id="m_agency"></select></label><label>Correo<input id="m_email" type="email" required maxlength="254"></label></div>
+<button class="btn">Sumar</button><p id="memberMsg" class="msg" role="status"></p></form>
+</section>
+
+</main></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js?v=1"></script>
+<script src="panel.js?v=1"></script>
+</body></html>
