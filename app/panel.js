@@ -81,7 +81,7 @@ async function loadCars(){
   cars = data || [];
   const soon = cars.filter(c => c.status === 'published' && new Date(c.expires_at) - Date.now() < 7 * 864e5);
   const fewPh = cars.filter(c => c.status === 'published' && (c.car_photos || []).length < 4);
-  $('#alerts').innerHTML = '<h2>Para revisar</h2>' + (soon.length || fewPh.length ? '' : '<p class="muted">Todo en orden ✓</p>')
+  $('#alerts').innerHTML = '<h2>Para revisar</h2>' + (soon.length || fewPh.length || !cars.length ? '' : '<p class="muted">Todo en orden ✓</p>')
     + (soon.length ? `<p>⚠ <b>${soon.length} ${soon.length === 1 ? 'auto vence' : 'autos vencen'} en menos de 7 días.</b> Renovalos para que sigan visibles.</p>` : '')
     + (fewPh.length ? `<p>📷 <b>${fewPh.length} ${fewPh.length === 1 ? 'auto tiene' : 'autos tienen'} menos de 4 fotos.</b> Con más fotos reciben más consultas.</p>` : '')
     + (cars.length ? '' : '<p>Todavía no cargaste autos. <button class="btn small" data-go="cargar">Cargar el primero</button></p>');
